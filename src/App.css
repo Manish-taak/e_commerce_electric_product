@@ -1,38 +1,507 @@
-.App {
-  text-align: center;
+*{
+  padding: 0%;
+  margin: 0%;
+  box-sizing: border-box;
+}
+.option-search::-webkit-scrollbar {
+  display: none;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+.container{
+  max-width: 1152px;
+  width: 100%;
+  margin: 0 auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* common css  */
+
+.common-h-60{
+font-size: 60px;
+font-weight: 500;
+line-height: 120%; 
+letter-spacing: -0.5px;
+text-transform: capitalize;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.common-h-34{
+font-size: 34px;
+font-weight: 500;
+line-height: 123.5%;
+letter-spacing: 0.25px;
+text-transform: capitalize;
+}
+
+.common-p-14{
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: 24px; 
+letter-spacing: 0.4px;
+text-transform: uppercase;
+}
+
+.common-p-16-gray{
+  color: var(--light-text-secondary, #495F6A);
+font-size: 16px;
+font-weight: 400;
+line-height: 150%; 
+letter-spacing: 0.15px;
+}
+
+.common-p-20{
+  color: var(--light-text-primary, #1F292D);
+font-size: 20px;
+font-weight: 500;
+line-height: 160%;
+letter-spacing: 0.15px;
+text-transform: capitalize;
+}
+
+.btn-common{
+  color: #fff;
+  background-color: #422659;
+  border-radius: 50px;
+  padding: 8px 22px ;
+}
+/* common css */
+
+
+
+.media-header{
+  display: flex;
+  justify-content: space-between;
+}
+
+.icons{
+  display: flex;
+  gap: 10px;
+}
+.res-logo{
+  display: flex;
+  gap: 6px;
+}
+
+.logo img {
+  height: 22px;
+  width: 22px;
+}
+
+.media-header{
+  display: none;
+}
+
+.simple-nav{
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  align-items: center;
+}
+.logo{
+  display: flex;
+  gap: 6px ;
+  align-items: center;
+}
+.logo img{
+  /* width: 100%;
+  height: 20px; */
+}
+
+.link ul{
+  display: flex;
+  list-style: none;
+}
+
+.logo-custom{
+  display: flex;
+  font-size: 34px;
+}
+.link ul li {
+  padding: 6px 16px ;
+}
+
+.main_nav{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+.icon-search{
+  display: flex;
+  gap: 30px;
+}
+.country-options{
+  display: flex;
+  gap: 20px;
+}
+
+.border-only{
+  border: 1px solid black;
+}
+
+.input-header{
+  outline: none;
+  border: none;
+  border-radius: 34px;
+  padding-left: 5px;
+}
+.option-search{
+  background-color: #422659;
+  border-radius: 13px 13px;
+    max-width: 74px;
+    color: #ffff;
+    padding: 5px;
+}
+
+.serch-bar{
+  display: flex;
+  border-radius: 15px;
+}
+
+.serch-bar{
+  border: 1px solid;
+
+}
+
+header{
+  padding: 15px 0px;
+}
+
+.header_top{
+  background-color: #0C0314;
+  padding: 12px 0px;
+}
+
+.header_top_text{
+  color: #ffff;
+}
+
+.header_top_text {
+  display: flex;
+  justify-content: space-between;
+}
+
+.top-header{
+  display: flex;
+  gap: 8px;
+}
+.right-top-header{
+  display: flex;
+  gap: 20px;
+}
+.policy-support{
+  display: flex;
+  gap: 20px;
+}
+.anchor-header-top{
+  color: #C4CFD4;
+  text-decoration: none;
+}
+
+
+
+/* banner */
+
+
+.banner-left-text{
   display: flex;
   flex-direction: column;
+  row-gap: 40px;
+  padding-right: 60px;
+}
+.banner{
+  margin-top: 80px;
+  display: flex;
+  gap: 24px;
+}
+
+.border-X{
+  border: 1px solid rgba(66, 38, 89, 0.08);
+}
+
+.banner-pruches{
+  display: flex;
+}
+
+.color-yellow-text{
+  color: #FFB400;
+}
+
+.btn-banner{
+  display: flex;
+  gap: 8px;
   align-items: center;
+}
+.fire-img{
+  max-width: 24px;
+  width: 100%;
+}
+/* banner */
+
+
+/* category */
+.category{
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+  margin-top: 80px;
+}
+.category-swiper{
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+.category-produts-card{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  text-align: center;
+}
+.category-cards{
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  border-radius: 20px;
+  padding: 20px;
+border: 1px solid var(--light-primary-shades-8-p, rgba(66, 38, 89, 0.08));
+background: var(--light-secondary-shades-4-p, rgba(237, 95, 96, 0.04));
+}
+.category-cards-images{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.view-all-btn{
+  display: flex;
+  gap: 8px;
+  padding: 6px 8px;
+  border: none;
+  background-color: transparent;
+  max-width: 100px;
+  width: 100%;
+  margin: 0 auto;
+}
+/* category */
+
+
+/* featured  */
+.redheart{
+  max-width: 20px;
+  width: 100%;
+  height: 20px;
+}
+.card-image{
+  position: relative;
+}
+.dil{
+  position: absolute;
+  top: 10px;
+  left: 90%;
+}
+.card-1-fertured{
+  max-width: 270px;
+  width: 100%;
+}
+/* .text-p-fea{
+  max-width: 200px;
+} */
+  .featured{
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+    margin-top: 80px;
+  }
+.fertured-product-swiper{
+  display: flex;
+  gap: 24px;
+}
+.Boult{
+  padding: 0px 20px ;
+text-overflow: ellipsis;
+white-space: nowrap;
+height: 40px;
+}
+.text-fertured-swiper{
+  display: flex;
+  flex-direction: column;
+  padding: 14px 0px;
+  row-gap: 10px;
+}
+.line-x{
+  border: 1px solid rgba(66, 38, 89, 0.08);
+}
+
+.fertured-price{
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 20px ;
+}
+.heading-featured-section{
+  display: flex;
+  justify-content: space-between;
+  
+}
+.left-right-swiper-image{
+  display: flex;
+  gap: 20px;
+}
+.left-right-swiper-image img {
+  height: 24px;
+}
+.card-image{
+  padding: 30px;
+}
+.fertured-product-swiper > div{
+  border-radius: 20px;
+  border: 1px solid var(--light-primary-shades-8-p, rgba(66, 38, 89, 0.08));
+  background: var(--light-primary-shades-4-p, rgba(66, 38, 89, 0.04));
+}
+
+.featrued-btn-view-all-product{
+  max-width: 209px;
+  width: 100%;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: 0 auto;
 }
 
-.App-link {
-  color: #61dafb;
+/* featured */
+
+/* top product */
+.top_product{
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+}
+.top-product-cards{
+  display: flex;
+  gap: 24px;
+}
+.top-card-1{
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px solid var(--light-primary-shades-8-p, rgba(66, 38, 89, 0.08));
+  background: var(--light-primary-contrast, #FFF);
+}
+.top-card-text{
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  align-items: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.buy-now-top-product{
+  display: flex;
+  gap: 8px;
+  max-width: 70px;
+  width: 100%;
+  align-items: center;
+  padding: 6px 8px;
 }
+.custom-card-top-product{
+  position: relative;
+}
+.image-text-top-product{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  top: 18%;
+  left: 10%;
+  right: 5%;
+  height: 300px;
+  color: #ffff;
+}
+
+.overley{
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  background-color: transparent;
+  /* opacity: 0.1; */
+  overflow: hidden;
+  transition: .5s ease;
+  height:0;
+  border: 20px;
+}
+
+.custom-card-top-product:hover .overley{
+  bottom: 0;
+  height: 100%;
+}
+
+
+.text-1-top{
+  display: flex;
+  flex-direction:column ;
+  row-gap: 20px;
+}
+
+.top-btn{
+  max-width: 210px;
+  width: 100%;
+}
+
+/* top product */
+
+
+/* cta banner */
+.cta_banner{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  padding: 80px 0px;
+}
+.cta-cards{
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 20px;
+border: 1px solid var(--light-primary-shades-8-p, rgba(66, 38, 89, 0.08));
+background: linear-gradient(270deg, rgba(66, 38, 89, 0.04) 0.11%, rgba(66, 38, 89, 0.00) 99.86%);
+}
+.cta-card-text{
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+.cta-card-product-details{
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+}
+.cta-ellipse{
+  display: flex;
+  gap: 15px;
+}
+.cta-cards{
+    width: 100%;
+}
+.cta-card-text {
+  max-width: 254px;
+  width: 100%;
+}
+.cta-card-image img {
+    width: 100%;
+}
+.cta-ellipse{
+  max-width: 115px;
+  width: 100%;
+  border-radius: 30px;
+background: var(--light-primary-contrast, #FFF);
+box-shadow: 0px 5px 22px 4px rgba(176, 190, 197, 0.12), 0px 12px 17px 2px rgba(176, 190, 197, 0.14), 0px 7px 8px -4px rgba(176, 190, 197, 0.20);
+}
+/* cta banner */
+
+
+
+/* swiper demo  */
+.mySwiper{
+  width: 100%;
+  display: flex;
+  text-align: center;
+}
+/* swiper demo  */

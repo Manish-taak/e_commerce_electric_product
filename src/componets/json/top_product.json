@@ -1,0 +1,20 @@
+[
+    {
+        "img" :"Rectangle 770.png",
+        "text-h2" : "Bluetooth watchs",
+        "star" :"Rating.png",
+        "price" : "$ 150.00"
+    },
+    {
+        "img" :"top2.png",
+        "text-h2" : "Bluetooth watchs",
+        "star" :"Rating.png",
+        "price" : "$ 80.00"
+    },
+    {
+        "img" :"top3.png",
+        "text-h2" : "Bluetooth watchs",
+        "star" :"Rating.png",
+        "price" : "$ 120.00"
+    }
+]
