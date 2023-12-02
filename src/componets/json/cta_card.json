@@ -18,25 +18,5 @@
         "ellipes_img_2" :"Ellipse 600.png",
         "ellipes_img_3" :"Ellipse 601.png",
         "ellipes_img_4" :"Ellipse 602.png"
-    },
-    {
-        "price_less" : "10% off",
-        "cta_card_pruduct_name" : "JBL Headphones",
-        "pruduct_price" : "$ 500.00",
-        "cta_image" :"Rectangle 955 (1).png",
-        "ellipes_img_1" :"Ellipse 599.png",
-        "ellipes_img_2" :"Ellipse 600.png",
-        "ellipes_img_3" :"Ellipse 601.png",
-        "ellipes_img_4" :"Ellipse 602.png"
-    },
-    {
-        "price_less" : "10% off",
-        "cta_card_pruduct_name" : "Apple MacBook Pro ",
-        "pruduct_price" : "$ 500.00",
-        "cta_image" :"Rectangle 955.png",
-        "ellipes_img_1" :"Ellipse 599.png",
-        "ellipes_img_2" :"Ellipse 600.png",
-        "ellipes_img_3" :"Ellipse 601.png",
-        "ellipes_img_4" :"Ellipse 602.png"
     }
 ]

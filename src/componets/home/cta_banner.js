@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import cta_card from '../json/cta_card.json'
 const Cta_banner = () => {
     return (
@@ -7,13 +7,13 @@ const Cta_banner = () => {
                 {
                     cta_card.map((index, value) => {
                         return (
-                            <>
-                                <div className="cta-cards" key={value} >
+                            <Fragment key={value} >
+                                <div className="cta-cards"  >
                                     <div className="cta-card-text">
                                         <div className="cta-card-product-details">
-                                            <h2 className='common-h-34' >{index['price_less']}</h2>
-                                            <p className='common-p-16' style={{color:"#1F292D"}}  >{index['cta_card_pruduct_name']}</p>
-                                            <h3 className='common-p-20' >{index['pruduct_price']}</h3>
+                                            <h2 className='common-34-1' >{index['price_less']}</h2>
+                                            <p className='common-14-1' style={{color:"#1F292D"}}  >{index['cta_card_pruduct_name']}</p>
+                                            <h3 className='common-16-3' >{index['pruduct_price']}</h3>
                                         </div>
                                         <div className='line-x'></div>
                                         <div className="cta-ellipse">
@@ -27,7 +27,7 @@ const Cta_banner = () => {
                                         <img src={require(`../img/${index['cta_image']}`)} alt="cta_image" />
                                     </div>
                                 </div>
-                            </>
+                            </Fragment>
                         )
                     })
                 }

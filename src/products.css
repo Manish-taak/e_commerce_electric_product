@@ -1,0 +1,294 @@
+.products-card-side .cta_banner {
+    padding: 0;
+}
+
+.cardcategory {
+    max-width: 368px;
+    width: 100%;
+    text-align: center;
+}
+
+.card-1-brands {
+    width: 100%;
+    border-radius: 15px;
+
+}
+
+.brand-card-image {
+    background: #fef9f9;
+}
+
+.text-brand-swiper {
+    background-color: #fff;
+}
+
+
+
+.partner-flex {
+    display: flex;
+    gap: 20px;
+}
+
+
+.serch-bar {
+    position: relative;
+}
+
+.dropdownalltypes {
+    padding: 38px;
+    position: absolute;
+    top: 38px;
+    box-shadow: 0 10px 14px -4px rgba(176, 190, 197, .2), 0 22px 35px 3px rgba(176, 190, 197, .14), 0 0 42px rgba(176, 190, 197, .2);
+    border-radius: 20px;
+    transition: all .4s;
+    opacity: 0;
+    z-index: 9;
+    background-color: #FFFFFF;
+    visibility: hidden;
+}
+
+.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.dropdownalltypes ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    row-gap: 10px;
+}
+
+.dropdownalltypes ul li {
+    padding: 6px 16px;
+}
+
+.dropdowncategory {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 143px;
+    width: 100%;
+   
+}
+
+.roate-180 {
+    -webkit-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+    transition: .4s;
+}
+
+.rotate-img {
+    transition: 0.3s ease-in-out;
+
+}
+
+.hover-right-icon {
+    display: none;
+}
+
+.dropdowncategory {
+    color: #495f6a;
+}
+
+.dropdowncategory:hover {
+    background-color: #f0f3f5;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.dropdowncategory:hover .hover-right-icon {
+    display: block;
+}
+
+.head {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+}
+
+li {
+    list-style: none;
+}
+
+.dropdown-content {
+    position: absolute;
+    box-shadow: 0 10px 14px -4px rgba(176, 190, 197, .2), 0 22px 35px 3px rgba(176, 190, 197, .14), 0 0 42px rgba(176, 190, 197, .2);
+    /* padding: 38px; */
+    border-radius: 20px;
+    transition: all .4s;
+    visibility: hidden;
+    z-index: 9;
+    background-color: #FFFFFF;
+    opacity: 0;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+}
+
+.link {
+    display: flex;
+}
+
+.home {
+    display: flex;
+    gap: 30px;
+}
+
+.home-dropdown-left ul {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    list-style: none;
+}
+
+.image-home-drop {
+    max-width: 200px;
+}
+
+.topdeals {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* .topdeals ul {
+    padding: 20px;
+}
+
+.topdeals ul li {
+    padding: 8px 18px;
+} */
+
+.settexthome {
+    left: -130px;
+    padding: 30px;
+}
+
+.home {
+    transition: 0.5s ease-in-out;
+}
+
+.language-drop {
+    top: 33px;
+    right: 12px;
+}
+
+.droppdown-language-inputs {
+    display: flex;
+    gap: 8px;
+    border: 1px solid #67517a;
+    border-radius: 30px;
+    padding: 8px 20px;
+}
+
+.language-input {
+    outline: none;
+    border: none;
+
+}
+
+.languages-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 189px;
+    width: 100%;
+    padding: 6px 16px;
+}
+
+.language-option-list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    margin: 10px;
+}
+
+.rigth-icon-list {
+    display: none;
+}
+
+.languages-option:hover .rigth-icon-list {
+    display: block;
+
+}
+
+.languages-option:hover {
+    background-color: #eef2f4;
+    border-radius: 20px;
+}
+
+
+
+
+
+
+
+
+.textarea {
+    resize: none;
+    border: none;
+    outline: none;
+    border: 1px solid rgba(87, 75, 155, 0.23);
+    border-radius: 30px;
+    padding: 16px 0px 0px 20px;
+}
+
+.chechbox {
+    display: flex;
+    gap: 9px;
+    align-items: center;
+}
+
+.check-input {
+    max-width: 15px;
+    width: 100%;
+    padding: 9px;
+}
+
+.btn-tr {
+    display: flex;
+    gap: 8px;
+    padding: 6px 16px;
+    border-radius: 30px;
+    border: none;
+    background-color: transparent;
+    border: 1px solid rgba(66, 38, 89, 0.50);
+}
+
+.ans {
+    height: 0;
+    overflow: hidden;
+    padding: 0;
+    transition: all 0.3s;
+}
+
+.aalu .ans {
+    height: 180px;
+    overflow: visible;
+}
+
+/* .custom-class-about-footer:hover li {
+    border-bottom: 1px solid #FFF;
+} */
+
+
+
+
+
+.show-on-scroll {
+    transform: translateY(20px);
+    transition: 0.7s;
+}
+
+.show-on-scroll.is-visible {
+    transform: translateY(0px);
+}

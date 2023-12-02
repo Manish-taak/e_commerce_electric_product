@@ -1,35 +1,46 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import top4 from '../img/top4.png'
-import ratting from '../img/Rating.png'
-import rightarrow from '../img/Arrowlineright.png'
-import top_product_json from '../json/top_product.json'
+// import ratting from '../img/Rating.png'
+// import rightarrow from '../img/Arrowlineright.png'
+// import top_product_json from '../json/top_product.json'
+import Card2 from '../cardtypes/card2'
 
-const Top_product = () => {
+const Top_product = (props) => {
+    const testData = [
+        {
+            img: "Rectangle 770.png",
+            textH2: "Bluetooth watchs",
+            star: "Rating.png",
+            price: "$ 150.00"
+        },
+        {
+            img: "Rectangle 770.png",
+            textH2: "Bluetooth watchs",
+            star: "Rating.png",
+            price: "$ 150.00"
+        },
+        {
+            img: "Rectangle 770.png",
+            textH2: "Bluetooth watchs",
+            star: "Rating.png",
+            price: "$ 150.00"
+        }
+    ]
     return (
         <>
             <div className="top_product container  ">
                 <div className="top_heading">
-                    <h2 className='common-h-34' >
+                    <h2 className='common-34-1' >
                         Best selling products
                     </h2>
                 </div>
                 <div className="top-product-cards">
                     {
-                        top_product_json.map((index, value) => {
+                        testData?.map((item, index) => {
                             return (
-                                <>
-                                    <div className='top-card-1'>
-                                        <div className="top-card-images">
-                                            <img src={require(`../img/${index["img"]}`)} alt='top_image' />
-                                        </div>
-                                        <div className="top-card-text">
-                                            <p className='common-p-20' >{index["text-h2"]}</p>
-                                            <img src={ratting} alt="" />
-                                            <h2 className='common-p-24' >{index["price"]}</h2>
-                                            <button className='   buy-now-top-product' > BUY <img src={rightarrow} alt="" /> </button>
-                                        </div>
-                                    </div>
-                                </>
+                                <Fragment key={index} >
+                                    <Card2 data={item} />
+                                </Fragment>
                             )
                         })
                     }
@@ -38,11 +49,11 @@ const Top_product = () => {
                         <div className="overley">
                             <div className="image-text-top-product">
                                 <div className="text-1-top">
-                                    <h2>Product for you</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eu nulla nunc aenean ac donec lectus in vel.</p>
+                                    <h2 className='text-white-best-products' >Product for you</h2>
+                                    <p style={{color:"#fff"}} className='common-14-1' >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eu nulla nunc aenean ac donec lectus in vel.</p>
                                 </div>
                                 <div className="  text-2-top">
-                                    <button className=' top-btn btn-common' > VIEW ALL </button>
+                                    <button className=' top-btn btn-common-main' > VIEW ALL </button>
                                 </div>
                             </div>
                         </div>
