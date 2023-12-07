@@ -82,31 +82,31 @@ const Hotoffersdrop = () => {
     },
   ]
 
-  const Category = [
-    {
-      name: "Mobiles"
-    },
-    {
-      name: "Laptops"
-    },
-    {
-      name: "Watches"
-    },
-    {
-      name: "Tablets"
-    },
-    {
-      name: "Headphones"
-    },
-    {
-      name: "Printers"
-    },
-    {
-      name: "Scanners"
-    }, {
-      name: "View all"
-    }
-  ]
+  // const Category = [
+  //   {
+  //     name: "Mobiles"
+  //   },
+  //   {
+  //     name: "Laptops"
+  //   },
+  //   {
+  //     name: "Watches"
+  //   },
+  //   {
+  //     name: "Tablets"
+  //   },
+  //   {
+  //     name: "Headphones"
+  //   },
+  //   {
+  //     name: "Printers"
+  //   },
+  //   {
+  //     name: "Scanners"
+  //   }, {
+  //     name: "View all"
+  //   }
+  // ]
   return (
     <>
       <div className="dropdown">

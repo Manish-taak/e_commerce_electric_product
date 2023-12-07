@@ -8,7 +8,7 @@ import Questions from '../cardtypes/questions'
 const Help = () => {
   const answers = [
     {
-      id:"1",
+      id: "1",
       question: "Sed eu, fames at accumsan vitae in tristique turpis.",
       answer: "Consectetur adipiscing elit. Amet mauris eget vestibulum tempor, maecenas. Mattis egestas augue vitae in sed ut. Nec donec massa, at scelerisque tempor, elit vitae aliquam. Donec pulvinar sollicitudin feugiat diam iaculis pulvinar faucibus suspendisse tincidunt."
     },
@@ -69,8 +69,8 @@ const Help = () => {
               answers.map((item) => {
                 return (
                   <Fragment key={item.id} >
-                    <div  onClick={(e) => { clickEventt(e) }}>
-                      <Questions  data={item} />
+                    <div onClick={(e) => { clickEventt(e) }}>
+                      <Questions data={item}/>
                     </div>
                   </ Fragment>
                 )

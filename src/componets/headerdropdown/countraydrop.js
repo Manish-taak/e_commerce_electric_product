@@ -35,7 +35,7 @@ const Countraydrop = (props) => {
             <input className='language-input' placeholder='Search' type="text" />
           </div>
           <div>
-          <ul className='language-option-list  ' >
+          <ul className='language-option-list'>
             {
               listlanguage.map((item, index) => {
                 return (

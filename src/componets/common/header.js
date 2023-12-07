@@ -16,9 +16,13 @@ import Pagesssdrop from '../headerdropdown/pagesssdrop'
 import Hotoffersdrop from '../headerdropdown/hotoffersdrop'
 import Topdealdrop from '../headerdropdown/topdealdrop'
 import Homedrop from '../headerdropdown/homedrop'
+import Sidebar from '../headerdropdown/sidebar'
+import Searchbar from '../searchbar/searchbar'
 const Header = () => {
     const [dropdown, setdropdown] = useState(false)
     const [country, setcountry] = useState(false)
+    const [sidebar,setsidebar] = useState(false)
+    const [search,setsearch] = useState(false)
     return (
         <>
             <section className='head' >
@@ -45,10 +49,12 @@ const Header = () => {
                                 <img src={logoimg2} alt="logoimg2" />
                             </div>
                             <div className="icons">
-                                <img src={logoimg3} alt="logoimg3" />
+                                <img onClick={()=>setsearch(!search)} src={logoimg3} alt="logoimg3" />
                                 <img src={user} alt="logoimg4" />
-                                <img src={logoimg5} alt="logoimg5" />
+                                <img onClick={()=>setsidebar(!sidebar)} src={logoimg5} alt="logoimg5" />
                             </div>
+                            <Sidebar setsidebar={setsidebar} open={sidebar}/>
+                            <Searchbar search={search} setsearch={setsearch} />
                         </nav>
                         <div className="main_nav">
                             <nav className='simple-nav'>
@@ -57,8 +63,8 @@ const Header = () => {
                                     <Link to='/' ><img src={mainlogo} alt="mainlogo" /></Link>
                                 </div>
                                 <div className="link">
-                                   <Homedrop/>
-                                    <Topdealdrop/>
+                                    <Homedrop />
+                                    <Topdealdrop />
                                     <Hotoffersdrop />
                                     <Pagesssdrop />
                                 </div>
@@ -84,7 +90,7 @@ const Header = () => {
                                             <path opacity="0.9" d="M9.41421 9.5C8.52331 9.5 8.07714 10.5771 8.70711 11.2071L11.2929 13.7929C11.6834 14.1834 12.3166 14.1834 12.7071 13.7929L15.2929 11.2071C15.9229 10.5771 15.4767 9.5 14.5858 9.5H9.41421Z" fill="#495F6A" />
                                         </svg>
                                     </div>
-                                        <Countraydrop country={country} />
+                                    <Countraydrop country={country} />
                                     <div className='border-only' ></div>
                                     <div>
                                         <Cartdrop />

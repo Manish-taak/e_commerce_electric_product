@@ -31,7 +31,6 @@ const Cta_banner = () => {
                         )
                     })
                 }
-
             </div>
         </>
     )

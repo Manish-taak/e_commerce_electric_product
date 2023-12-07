@@ -42,7 +42,7 @@ const Index = () => {
       <main>
         <Banner />
         < Category_products />
-        < Featured_products card3={true} />
+        < Featured_products card3={1} />
         <Top_product sideImage={true} />
         <Cta_banner />
         < Top_brands />

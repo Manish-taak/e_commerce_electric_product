@@ -28,7 +28,7 @@ const Cartdrop = () => {
                     <div className="cartdropdown">
                         <div className="carttop">
                             {
-                                cartdataselect.map((item, index) => {
+                                cartdataselect.map((item) => {
                                     return (
                                         <Fragment key={item.id} >
                                             <div className="cart-box-select">
@@ -42,7 +42,6 @@ const Cartdrop = () => {
                                     )
                                 })
                             }
-
                         </div>
                         <div className="line-x"></div>
                         <button className='btn-common-main'>

@@ -61,6 +61,106 @@ const Featured_products = (props) => {
     }
   ]
   // card two 
+  const cartdata = [
+    {
+      img: "Rectangle 770.png",
+      textH2: "Bluetooth watchs",
+      star: "Rating.png",
+      price: "$ 150.00"
+    },
+    {
+      img: "Rectangle 770.png",
+      textH2: "Bluetooth watchs",
+      star: "Rating.png",
+      price: "$ 150.00"
+    },
+    {
+      img: "Rectangle 770.png",
+      textH2: "Bluetooth watchs",
+      star: "Rating.png",
+      price: "$ 150.00"
+    },
+    {
+      img: "Rectangle 770.png",
+      textH2: "Bluetooth watchs",
+      star: "Rating.png",
+      price: "$ 150.00"
+    },
+    {
+      img: "Rectangle 770.png",
+      textH2: "Bluetooth watchs",
+      star: "Rating.png",
+      price: "$ 150.00"
+    },
+    {
+      img: "Rectangle 770.png",
+      textH2: "Bluetooth watchs",
+      star: "Rating.png",
+      price: "$ 150.00"
+    },
+    {
+      img: "Rectangle 770.png",
+      textH2: "Bluetooth watchs",
+      star: "Rating.png",
+      price: "$ 150.00"
+    },
+    {
+      img: "Rectangle 770.png",
+      textH2: "Bluetooth watchs",
+      star: "Rating.png",
+      price: "$ 150.00"
+    },
+    {
+      img: "Rectangle 770.png",
+      textH2: "Bluetooth watchs",
+      star: "Rating.png",
+      price: "$ 150.00"
+    },
+    {
+      img: "Rectangle 770.png",
+      textH2: "Bluetooth watchs",
+      star: "Rating.png",
+      price: "$ 150.00"
+    },
+    {
+      img: "Rectangle 770.png",
+      textH2: "Bluetooth watchs",
+      star: "Rating.png",
+      price: "$ 150.00"
+    },
+    {
+      img: "Rectangle 770.png",
+      textH2: "Bluetooth watchs",
+      star: "Rating.png",
+      price: "$ 150.00"
+    },
+    {
+      img: "Rectangle 770.png",
+      textH2: "Bluetooth watchs",
+      star: "Rating.png",
+      price: "$ 150.00"
+    },
+    {
+      img: "Rectangle 770.png",
+      textH2: "Bluetooth watchs",
+      star: "Rating.png",
+      price: "$ 150.00"
+    },
+    {
+      img: "Rectangle 770.png",
+      textH2: "Bluetooth watchs",
+      star: "Rating.png",
+      price: "$ 150.00"
+    },
+    {
+      img: "Rectangle 770.png",
+      textH2: "Bluetooth watchs",
+      star: "Rating.png",
+      price: "$ 150.00"
+    }
+
+  ]
+  // card cart section wala data ha url search ker cart 
   const testDataNew = [
     {
       img: "Rectangle 770.png",
@@ -160,6 +260,7 @@ const Featured_products = (props) => {
     }
 
   ]
+
   return (
     <>
       <div className="featured container">
@@ -179,7 +280,7 @@ const Featured_products = (props) => {
               swiperRef.current = swiper;
             }}
             breakpoints={{
-              200:{
+              200: {
                 slidesPerView: 1,
                 spaceBetween: 10
               },
@@ -191,32 +292,44 @@ const Featured_products = (props) => {
                 slidesPerView: 3,
                 spaceBetween: 10
               },
-              1024:{
+              1024: {
                 slidesPerView: 4,
                 spaceBetween: 10
               }
             }}
           >
             {
-              props.card2 &&
+              props.card2 === 2 &&
               testDataNew.map((item, index) => {
                 return (
-                  < Fragment  key={index} >
-                  <SwiperSlide className='featured_seiperslide'>
-                    < Card2 data={item} />
-                  </SwiperSlide>
+                  < Fragment key={index} >
+                    <SwiperSlide className='featured_seiperslide'>
+                      < Card2 data={item} />
+                    </SwiperSlide>
                   </Fragment>
                 )
               })
             }
             {
-              props.card3 &&
+              props.card2 === 3 &&
+              cartdata.map((item, index) => {
+                return (
+                  < Fragment key={index} >
+                    <SwiperSlide className='featured_seiperslide'>
+                      < Card2 data={item} />
+                    </SwiperSlide>
+                  </Fragment>
+                )
+              })
+            }
+            {
+              props.card3 === 1 &&
               featuredcarddata.map((item, index) => {
                 return (
                   <Fragment key={index} >
-                  <SwiperSlide  className='featured_seiperslide'>
-                    < Card3 data={item} />
-                  </SwiperSlide>
+                    <SwiperSlide className='featured_seiperslide'>
+                      < Card3 data={item} />
+                    </SwiperSlide>
                   </Fragment>
                 )
               })

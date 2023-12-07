@@ -5,6 +5,7 @@ import Index from './componets/pages/index.js';
 import Products from './componets/pages/products.js';
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
 import TopDeals from './componets/pages/topdeals.js';
+import Cart from './componets/pages/cart.js';
 import Helpcenter from './componets/helpcenter/help.js';
 import Getintuch from './componets/getintuch.js';
 import { useEffect } from 'react';
@@ -35,7 +36,7 @@ function App() {
         rect?.right <= (window.innerWidth || document.documentElement.clientWidth)
       );
     }
-  },[])
+  }, [])
   return (
     <>
       <BrowserRouter>
@@ -46,10 +47,8 @@ function App() {
           <Route element={<TopDeals />} path='/topDeals' ></Route>
           <Route element={<Helpcenter />} path='/helpcenter' ></Route>
           <Route element={<Getintuch />} path='/getintuch' ></Route>
+          <Route element={<Cart />} path='/cart' ></Route>
         </Routes>
-        {/* {
-            Router.path != 'helpcenter' &&
-          } */}
         <Footer />
       </BrowserRouter>
     </>

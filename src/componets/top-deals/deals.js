@@ -5,7 +5,6 @@ const Deals = () => {
     return (
         <>
             <Section_1_products  addsection={true} deals={"topdeals"} />
-            
         </>
     )
 }

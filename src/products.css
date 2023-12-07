@@ -149,6 +149,8 @@ li {
     flex-direction: column;
     row-gap: 15px;
     list-style: none;
+    /* max-width: 200px; */
+    width: 200px;
 }
 
 .image-home-drop {
@@ -262,7 +264,9 @@ li {
     border: none;
     background-color: transparent;
     border: 1px solid rgba(66, 38, 89, 0.50);
+    position: relative;
 }
+
 
 .ans {
     height: 0;
