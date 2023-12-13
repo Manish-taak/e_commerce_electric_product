@@ -282,19 +282,15 @@ const Featured_products = (props) => {
             breakpoints={{
               200: {
                 slidesPerView: 1,
-                spaceBetween: 10
               },
               500: {
                 slidesPerView: 2,
-                spaceBetween: 10
               },
               768: {
                 slidesPerView: 3,
-                spaceBetween: 10
               },
               1024: {
                 slidesPerView: 4,
-                spaceBetween: 10
               }
             }}
           >
@@ -335,7 +331,6 @@ const Featured_products = (props) => {
               })
             }
           </Swiper>
-
         </div>
         <button className='btn-common-main featrued-btn-view-all-product  ' > VIEW ALL PRODUCTS </button>
       </div>

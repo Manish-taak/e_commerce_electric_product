@@ -9,6 +9,8 @@ import Cart from './componets/pages/cart.js';
 import Helpcenter from './componets/helpcenter/help.js';
 import Getintuch from './componets/getintuch.js';
 import { useEffect } from 'react';
+import Addtocart from './componets/cartpages/addtocart.js';
+import Checktout from './componets/pages/checktout.js';
 function App() {
 
   useEffect(() => {
@@ -48,6 +50,8 @@ function App() {
           <Route element={<Helpcenter />} path='/helpcenter' ></Route>
           <Route element={<Getintuch />} path='/getintuch' ></Route>
           <Route element={<Cart />} path='/cart' ></Route>
+          <Route element={<Addtocart />} path='/addtocart' ></Route>
+          <Route element={<Checktout />} path='/checkout' ></Route>
         </Routes>
         <Footer />
       </BrowserRouter>

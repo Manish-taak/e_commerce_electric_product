@@ -12,8 +12,8 @@ const Customerreviewcard = ({data}) => {
             <div className="id-photo-address">
               <img src={userimg} alt="userimg" />
               <div>
-                <p>{data?.name}</p>
-                <p>{data?.date}</p>
+                <p className='common-16-4' >{data?.name}</p>
+                <p className='common-16-2' >{data?.date}</p>
               </div>
             </div>
             <div className="products-ratting">

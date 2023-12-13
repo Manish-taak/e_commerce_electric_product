@@ -5,7 +5,7 @@ import Cartproductedetails from '../cartpages/cartproductedetails'
 import Customberreview from '../cartpages/customberreview'
 import Cartquestionanswer from '../cartpages/cartquestionanswer'
 import Featured_products from '../home/featured_products'
-import Customerreviewcard from '../cardtypes/customerreviewcard'
+// import Customerreviewcard from '../cardtypes/customerreviewcard'
 
 const Cart = () => {
   return (
@@ -16,7 +16,7 @@ const Cart = () => {
         <Customberreview/>
         <Cartquestionanswer/>
         <Featured_products card2={3} />
-        {/* <Customerreviewcard/> */}
+        
         
     </>
   )

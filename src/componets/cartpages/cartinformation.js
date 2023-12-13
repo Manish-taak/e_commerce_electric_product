@@ -25,7 +25,7 @@ const Cartinformation = () => {
     {
       heading: "Style",
       info: "GPS + Cellular",
-      },
+    }
   ]
   return (
     <>
@@ -40,13 +40,13 @@ const Cartinformation = () => {
                 return (
                   <>
                     <li className='products-info-list'>
-                      <p>{item.heading}</p>
+                      <p className='common-16-4' >{item.heading}</p>
                       <div className="products-image-name">
-                       {
-                         item?.infoImg &&
-                         <img src={require(`../img/${item?.infoImg}`)} alt="apple" />
-                       }
-                        <p>{item.info}</p>
+                        {
+                          item?.infoImg &&
+                          <img src={require(`../img/${item?.infoImg}`)} alt="apple" />
+                        }
+                        <p className='common-16-2' >{item.info}</p>
                       </div>
                     </li>
                   </>

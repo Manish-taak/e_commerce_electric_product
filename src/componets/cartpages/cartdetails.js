@@ -14,21 +14,21 @@ const Cartdetails = () => {
         <div className="cartdetalis-heading">
           <h2 className='common-34-1' >Apple watch </h2>
           <div className="cartlink">
-            <li><Link to="/" >Home</Link></li>
+            <li><Link className='common-16-2'  to="/" >Home</Link></li>
             <img src={right} alt="right" />
-            <li> <Link to="/products" >Products</Link> </li>
+            <li> <Link className='common-16-2' to="/products" >Products</Link> </li>
             <img src={right} alt="right" />
-            <li><Link to="/" >Products details </Link> </li>
+            <li><Link  className='common-16-2' to="/" >Products details </Link> </li>
           </div>
         </div>
         <div className="products-swiper-other-type">
-          <Swipercodecart />
+          <Swipercodecart/>
           <div className="products-details-type">
             <div className="product-name">
-              <p className='product-price-and-name' >Apple watch SE
+              <p className='product-price-and-name common-24-1 ' >Apple watch SE
                 <img src={shareicon} alt="shareicon" />
               </p>
-              <p>Price: $600.00 - Silver Aluminium Case with Abyss Blue Sport Band - Regular</p>
+              <p className='common-16-2'   > <span className='common-16-4' >Price: $600.00</span>  - Silver Aluminium Case with Abyss Blue Sport Band - Regular</p>
             </div>
             <div className="product-color">
               <p className='common-16-2' >Color</p>
@@ -54,7 +54,7 @@ const Cartdetails = () => {
               </div>
             </div>
             <div className="product-style">
-              <p>Style name</p>
+              <p className='common-16-2' >Style name</p>
               <div className=" slectsradio-gps ">
                 <div className='selects-radio' >
                   <input type="radio" />
@@ -69,8 +69,8 @@ const Cartdetails = () => {
             <div className="product-size  product-div">
               <div className="product-price">
                 <div className="price-text">
-                  <h2>$320.00</h2>
-                  <p>Inclusive of all taxes</p>
+                  <h2 className='common-34-1' >$320.00</h2>
+                  <p className='common-14-2' >Inclusive of all taxes</p>
                 </div>
                 <div className="ratting-number">
                   <p>4.5</p>
@@ -88,7 +88,7 @@ const Cartdetails = () => {
               </div>
             </div>
             <div className="product-btns">
-              <button className=' cart-btn btn-customer' >ADD TO CART</button>
+              <button className=' cart-btn btn-customer' > <Link className='btn-customer-2' to="/addtocart" >ADD TO CART</Link> </button>
               <button className='btn-common-main btn-buy-now-cart '  >BUY NOW</button>
             </div>
           </div>

@@ -20,7 +20,7 @@ const Cartproductedetails = () => {
           productdetails.map((item)=>{
             return(
               <>
-              <p>
+              <p className='common-16-2' >
                 {item.details}
               </p>
               </>
