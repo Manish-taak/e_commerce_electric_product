@@ -14,41 +14,41 @@ const Top_brands = () => {
         {
             heading: "  boAt Wave Lite Smartwa. boAt Wave Lite Smartwa.I Phone Apple ",
             price: "$ 300.00",
-            imgs: "Rectangle 924.png"
+            imgs: "product16.png"
         },
         {
             heading: "boAt Airdopes 2v1.0 Tr..",
             price: "$ 253.00",
-            imgs: "Rectangle 924.png"
+            imgs: "product15.png"
         },
         {
             heading: "TWS Earbuds with Mic",
             price: "$ 320.00",
-            imgs: "Rectangle 924.png"
+            imgs: "product14.png"
         },
         {
             heading: "boAt Wave Lite Smartwa.. ",
             price: "$ 400.00",
-            imgs: "Rectangle 924.png"
+            imgs: "product13.png"
         }, {
             heading: " boAt Wave Lite Smartwa.. ",
             price: "$ 300.00",
-            imgs: "Rectangle 924.png"
+            imgs: "product12.png"
         },
         {
             heading: "boAt Wave Lite Smartwa..",
             price: "$ 253.00",
-            imgs: "Rectangle 924.png"
+            imgs: "product11.png"
         },
         {
             heading: "boAt Wave Lite Smartwa..",
             price: "$ 320.00",
-            imgs: "Rectangle 924.png"
+            imgs: "product10.png"
         },
         {
             heading: "boAt Wave Lite Smartwa.. ",
             price: "$ 400.00",
-            imgs: "Rectangle 924.png"
+            imgs: "product9.png"
         }
     ]
     // const [heart, setheart] = useState(false)
@@ -65,6 +65,7 @@ const Top_brands = () => {
                     </div>
                     <div className="left-right-swiper-image-brannd">
                         <img onClick={() => swiperRef.current?.slidePrev()} src={previces} alt="previces" />
+                        <div className="midle line-x "></div>
                         <img onClick={() => swiperRef.current?.slideNext()} src={next} alt="next" />
                     </div>
                 </div>

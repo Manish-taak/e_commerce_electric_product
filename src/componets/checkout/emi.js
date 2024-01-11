@@ -2,6 +2,7 @@ import React from 'react'
 import icic from '../img/icic.svg'
 import arrowdown from '../img/ArrowDropDownOutlined.png'
 import union from '../img/union.svg'
+import OptionCheckbox from '../../snippets/optionCheckbox'
 const Emi = () => {
   const emidata = [
     {
@@ -39,20 +40,8 @@ const Emi = () => {
     <>
       <div className="emi">
         <div className="emi-payment-option">
-          <div className="optional">
-            <label htmlFor="">
-              <input className='checkbox-input' type="checkbox" name="" id="" />
-              <input className='optional-inpuit common-16-2' type="text" placeholder='Debit Card EMI' />
-            </label>
-            <img src={icic} alt="paytm" />
-          </div>
-          <div className="optional">
-            <label htmlFor="">
-              <input className='checkbox-input' type="checkbox" name="" id="" />
-              <input className='optional-inpuit common-16-2' type="text" placeholder='Credit Card EMI' />
-            </label>
-            <img src={union} alt="ammzon" />
-          </div>
+          <OptionCheckbox url={icic} label={"Debit Card EMI"} />
+          <OptionCheckbox url={union} label={"Credit Card EMI"} />
         </div>
         <div className="line-x"></div>
         <div className="common-justify-bt">
@@ -71,11 +60,17 @@ const Emi = () => {
             textTransform: 'capitalize'
           }} className=' emiplan-p common-14-2' >EMI Plan </p>
           <table className='emi-table'  >
-            <tr className='emi-table-tr common-14-4 ' >
+            {/* <tr className='emi-table-tr common-14-4 ' >
               <th className='emi-th' >EMI (Month)</th>
               <th className='emi-th' >Interest (Amount)</th>
               <th className='emi-th' >Tatal Cost</th>
-              <th style={{padding:'6px 10px' , width:'160px', textAlign:'start' }} >Status</th>
+              <th style={{ padding: '6px 10px', width: '160px', textAlign: 'start' }} >Status</th>
+            </tr> */}
+            <tr>
+              <td style={{width:"180px"}} className='head-td' >EMI (Month)</td>
+              <td style={{width:"180px"}} className='head-td' >Interest (Amount)</td>
+              <td style={{width:"180px"}} className='head-td' >Tatal Cost</td>
+              <td  style={{width:"160px"}}className='head-td' >Statuss</td>
             </tr>
             {
               emidata.map((item) => {

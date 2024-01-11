@@ -18,55 +18,55 @@ const Section_1_products = (props) => {
 
     const data = [
         {
-            image: "mi.png",
+            image: "product17.png",
             productsname: "Apple Watch Series 7",
             price: "$ 158.00",
             in_of_stok: "In stock"
         },
         {
-            image: "mi.png",
+            image: "product18.png",
             productsname: "Apple Watch Series 7",
             price: "$ 158.00",
             in_of_stok: "In stock"
         },
         {
-            image: "mi.png",
+            image: "product19.png",
             productsname: "Apple Watch Series 7",
             price: "$ 158.00",
             in_of_stok: "In stock"
         },
         {
-            image: "mi.png",
+            image: "product20.png",
             productsname: "Apple Watch Series 7",
             price: "$ 158.00",
             in_of_stok: "In stock"
         },
         {
-            image: "mi.png",
+            image: "product21.png",
             productsname: "Apple Watch Series 7",
             price: "$ 158.00",
             in_of_stok: "In stock"
         },
         {
-            image: "mi.png",
+            image: "product22.png",
             productsname: "Apple Watch Series 7",
             price: "$ 158.00",
             in_of_stok: "In stock"
         },
         {
-            image: "mi.png",
+            image: "product23.png",
             productsname: "Apple Watch Series 7",
             price: "$ 158.00",
             in_of_stok: "In stock"
         },
         {
-            image: "mi.png",
+            image: "product24.png",
             productsname: "Apple Watch Series 7",
             price: "$ 158.00",
             in_of_stok: "In stock"
         },
         {
-            image: "mi.png",
+            image: "product25.png",
             productsname: "Apple Watch Series 7",
             price: "$ 158.00",
             in_of_stok: "In stock"
@@ -194,7 +194,6 @@ const Section_1_products = (props) => {
                                     <path d="M5.58782 7.74563C5.91221 7.42123 6.43807 7.42095 6.76282 7.74499L9.29366 10.2703C9.68401 10.6598 10.316 10.6598 10.7063 10.2703L13.2372 7.74499C13.5619 7.42095 14.0878 7.42123 14.4122 7.74563C14.7368 8.07027 14.7368 8.59662 14.4122 8.92127L10.7071 12.6263C10.3166 13.0169 9.68342 13.0169 9.29289 12.6263L5.58782 8.92127C5.26318 8.59662 5.26318 8.07027 5.58782 7.74563Z" fill="#422659" />
                                 </svg></button>
                             </div>
-
                         </div>
                         {
                             props?.addsection === true ? (<Cta_banner />) : ("")

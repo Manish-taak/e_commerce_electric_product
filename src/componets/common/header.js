@@ -16,13 +16,14 @@ import Pagesssdrop from '../headerdropdown/pagesssdrop'
 import Hotoffersdrop from '../headerdropdown/hotoffersdrop'
 import Topdealdrop from '../headerdropdown/topdealdrop'
 import Homedrop from '../headerdropdown/homedrop'
+import logoheader from '../img/Logo-main-header.svg'
 import Sidebar from '../headerdropdown/sidebar'
 import Searchbar from '../searchbar/searchbar'
 const Header = () => {
     const [dropdown, setdropdown] = useState(false)
     const [country, setcountry] = useState(false)
-    const [sidebar,setsidebar] = useState(false)
-    const [search,setsearch] = useState(false)
+    const [sidebar, setsidebar] = useState(false)
+    const [search, setsearch] = useState(false)
     return (
         <>
             <section className='head' >
@@ -35,7 +36,7 @@ const Header = () => {
                         <div className="right-top-header">
                             <Link className='anchor-header-top  common-14-1 ' to="/helpcenter" >Help center</Link>
                             <div className="policy-support">
-                                <Link className='anchor-header-top  common-14-1 ' to="/getintuch" >Returns policy</Link>
+                                <Link className='anchor-header-top  common-14-1 ' to="/returnorder" >Returns policy</Link>
                                 <span className='common-14-1'>Support<a className='anchor-header-top' href="#">(+00) 0123456789</a></span>
                             </div>
                         </div>
@@ -49,18 +50,19 @@ const Header = () => {
                                 <img src={logoimg2} alt="logoimg2" />
                             </div>
                             <div className="icons">
-                                <img onClick={()=>setsearch(!search)} src={logoimg3} alt="logoimg3" />
+                                <img onClick={() => setsearch(!search)} src={logoimg3} alt="logoimg3" />
                                 <img src={user} alt="logoimg4" />
-                                <img onClick={()=>setsidebar(!sidebar)} src={logoimg5} alt="logoimg5" />
+                                <img onClick={() => setsidebar(!sidebar)} src={logoimg5} alt="logoimg5" />
                             </div>
-                            <Sidebar setsidebar={setsidebar} open={sidebar}/>
+                            <Sidebar setsidebar={setsidebar} open={sidebar} />
                             <Searchbar search={search} setsearch={setsearch} />
                         </nav>
                         <div className="main_nav">
                             <nav className='simple-nav'>
                                 <div className="logo">
-                                    <img className='logofirst' src={logoimg1} alt="logoimg1" />
-                                    <Link to='/' ><img src={mainlogo} alt="mainlogo" /></Link>
+                                    <Link to='/' > <img src={logoheader} alt="logoheader" /></Link>
+                                    {/* <img className='logofirst' src={logoimg1} alt="logoimg1" />
+                                    <img src={mainlogo} alt="mainlogo" /> */}
                                 </div>
                                 <div className="link">
                                     <Homedrop />

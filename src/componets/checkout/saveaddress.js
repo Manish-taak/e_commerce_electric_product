@@ -33,15 +33,18 @@ const Saveaddress = () => {
                       <p className='common-20-1' >{item.name}</p>
                       <span className='address-location' >Home</span>
                     </div>
-                    <div className="customer-address">
-                      <p className='common-16-2' >{item.address}</p>
+                    <div className="address-info">
+                      <div className="customer-address">
+                        <p className='common-16-2' >{item.address}</p>
+                      </div>
+                      <div className="btn-select">
+                        <button className="select-address common-15-1-btn ">
+                          Select address
+                        </button>
+                      </div>
                     </div>
                   </div>
-                  <div className="btn-select">
-                    <button className="select-address common-15-1-btn ">
-                      Select address
-                    </button>
-                  </div>
+
                 </div>
               </Fragment>
             )
@@ -54,7 +57,7 @@ const Saveaddress = () => {
           </div>
         }
         {
-          newaddress ? <Delivaryaddress  open={true} cancel={setnewaddress} /> : ""
+          newaddress ? <Delivaryaddress open={true} cancel={setnewaddress} /> : ""
         }
       </div>
     </>

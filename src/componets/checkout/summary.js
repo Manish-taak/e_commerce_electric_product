@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
+import { Link } from 'react-router-dom'
+import Enterotp from '../verifyprocess/enterotp'
+import Contaxtpop from '../../contaxtpop'
+import Thirdpartyproces from '../verifyprocess/thirdpartyprocess.js'
 
 const Summary = (props) => {
- 
+    const [show, setShow] = useState(false)
+    const {setClick } = useContext(Contaxtpop);
     return (
         <div className="summary">
             <div className="summary-heading">
@@ -28,7 +33,12 @@ const Summary = (props) => {
                 <p className='common-16-4'  >Total amount</p>
                 <p className='common-24-1' >$530.00</p>
             </div>
-            <button style={{cursor:'pointer'}}  onClick={()=>props.setsection(props.section + 1)}  className='btn-common-main' >  CONTINE PAYMENT </button>
+            <Link>
+                <button style={{ cursor: 'pointer', width: "100%" }} onClick={() => { props.setsection(props.section + 1); setShow(true); setClick(true) }} className='btn-common-main' > CONTINUE PAYMENT </button>
+            </Link>
+            {
+                show && <Thirdpartyproces setClick={setClick} setShow={setShow} />
+            }
         </div>
     )
 }

@@ -227,14 +227,6 @@ li {
     background-color: #eef2f4;
     border-radius: 20px;
 }
-
-
-
-
-
-
-
-
 .textarea {
     resize: none;
     border: none;
@@ -258,6 +250,7 @@ li {
 
 .btn-tr {
     display: flex;
+    cursor: pointer;
     gap: 8px;
     padding: 6px 16px;
     border-radius: 30px;

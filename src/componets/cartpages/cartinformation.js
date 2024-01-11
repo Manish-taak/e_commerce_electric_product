@@ -38,7 +38,7 @@ const Cartinformation = () => {
             {
               completeoneproductdata.map((item, index) => {
                 return (
-                  <>
+                  <React.Fragment key={index} >
                     <li className='products-info-list'>
                       <p className='common-16-4' >{item.heading}</p>
                       <div className="products-image-name">
@@ -49,7 +49,7 @@ const Cartinformation = () => {
                         <p className='common-16-2' >{item.info}</p>
                       </div>
                     </li>
-                  </>
+                  </React.Fragment>
                 )
               })
             }

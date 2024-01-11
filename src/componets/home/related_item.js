@@ -20,41 +20,41 @@ const Related_item = () => {
     {
       heading: "Hp 15S AMD Ryzen 3- 5300U 15.6 Inches ",
       price: "$ 300.00",
-      imgs: "Rectangle 924.png"
+      imgs: "product13.png"
     },
     {
       heading: "Samsung Galaxy M12 (Blue, 4GB RAM)",
       price: "$ 253.00",
-      imgs: "Rectangle 924.png"
+      imgs: "product9.png"
     },
     {
       heading: "Boult Audio Bass D3 Buds Lightweight Stereo ",
       price: "$ 320.00",
-      imgs: "Rectangle 924.png"
+      imgs: "product16.png"
     },
     {
       heading: "Apple iPhone SE (64 GB) - Midnight",
       price: "$ 400.00",
-      imgs: "Rectangle 924.png"
+      imgs: "product1.png"
     }, {
       heading: "Boult Audio Bass D3 Buds Lightweight Stereo ",
       price: "$ 300.00",
-      imgs: "Rectangle 924.png"
+      imgs: "product8.png"
     },
     {
       heading: "Bluetooth Wireless Ear Head phones (35Hrs Playtime)",
       price: "$ 253.00",
-      imgs: "Rectangle 924 (1).png"
+      imgs: "product14.png"
     },
     {
       heading: "Apple iPhone 13 Pro Max (128GB)",
       price: "$ 320.00",
-      imgs: "Rectangle 924.png"
+      imgs: "product13.png"
     },
     {
       heading: "Hp 15S AMD Ryzen 3- 5300U 15.6 Inches ",
       price: "$ 400.00",
-      imgs: "Rectangle 924.png"
+      imgs: "product15.png"
     }
   ]
   return (
@@ -64,6 +64,7 @@ const Related_item = () => {
           <h2 className='common-34-1' >Related items for you</h2>
           <div className="left-right-swiper-image-realted">
             <img onClick={() => swiperRef.current?.slidePrev()} src={previces} alt="previces" />
+            <div className="midle line-x "></div>
             <img onClick={() => swiperRef.current?.slideNext()} src={next} alt="next" />
           </div>
         </div>

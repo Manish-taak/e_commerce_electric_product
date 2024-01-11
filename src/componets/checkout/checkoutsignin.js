@@ -5,25 +5,31 @@ import google from '../img/google.svg'
 import facebook from '../img/facebook.svg'
 import right from '../img/rightarrowsvg.svg'
 import Summary from './summary'
+import { Link } from 'react-router-dom'
 const Checkoutsignin = () => {
     return (
         <>
             <div className="checkoutsignin ">
                 <div className="online-options">
-                    <div className="online-option-1">
-                        <div className="online-option-1-image-name">
-                            <img src={register} alt="register" />
-                            <p className='common-16-3'> Register</p>
+                    <Link to="/mainuseraccount/register" >
+                        <div style={{ cursor: "pointer" }} className="online-option-1">
+                            <div className="online-option-1-image-name">
+                                <img src={register} alt="register" />
+                                <p className='common-16-3'> Register</p>
+                            </div>
+                            <img src={right} alt="right" />
                         </div>
-                        <img src={right} alt="right" />
-                    </div>
-                    <div className="online-option-1">
-                        <div className="online-option-1-image-name">
-                            <img src={login} alt="register" />
-                            <p className='common-16-3'> Log In</p>
+                    </Link>
+                    <Link to="/mainuseraccount/login" >
+                        <div style={{ cursor: "pointer" }} className="online-option-1">
+                            <div className="online-option-1-image-name">
+                                <img src={login} alt="register" />
+                                <p className='common-16-3'> Log In</p>
+                            </div>
+                            <img src={right} alt="right" />
                         </div>
-                        <img src={right} alt="right" />
-                    </div>
+                    </Link>
+
                     <div className="online-option-1">
                         <div className="online-option-1-image-name">
                             <img src={google} alt="register" />
@@ -31,7 +37,7 @@ const Checkoutsignin = () => {
                         </div>
                         <img src={right} alt="right" />
                     </div>
-                    
+
                     <div className="online-option-1">
                         <div className="online-option-1-image-name">
                             <img src={facebook} alt="register" />

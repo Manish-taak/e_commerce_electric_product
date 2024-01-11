@@ -11,7 +11,7 @@ const Customerreviewcard = ({data}) => {
           <div className="customer-id">
             <div className="id-photo-address">
               <img src={userimg} alt="userimg" />
-              <div>
+              <div className='customer-card-review-user-name-info' >
                 <p className='common-16-4' >{data?.name}</p>
                 <p className='common-16-2' >{data?.date}</p>
               </div>
@@ -25,7 +25,7 @@ const Customerreviewcard = ({data}) => {
             </div>
           </div>
           <div>
-            <p className='common-14-2' >{data?.comment}</p>
+            <p className=' commentdata common-14-2' >{data?.comment}</p>
           </div>
           <div className="line-x"></div>
           <div className=' btncardcustomer ' >

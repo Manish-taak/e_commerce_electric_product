@@ -1,4 +1,4 @@
-import { Fragment, useRef, useState } from 'react';
+import { Fragment, useContext, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import next from '../img/ArrowBackFilled (1).png'
 import previces from '../img/ArrowBackFilled.png'
@@ -9,6 +9,8 @@ import previces from '../img/ArrowBackFilled.png'
 // import cartimage from '../img/addtocart.png'
 import Card3 from '../cardtypes/card3.js';
 import Card2 from '../cardtypes/card2';
+import { Link } from 'react-router-dom';
+import Contaxtpop from '../../contaxtpop.js';
 // import Card2 from '../cardtypes/card2.js';
 
 
@@ -23,41 +25,41 @@ const Featured_products = (props) => {
     {
       heading: "Boult Audio Bass D3 Buds Lightweight Stereo ",
       price: "$ 300.00",
-      imgs: "featuredimage3.png"
+      imgs: "product1.png"
     },
     {
       heading: "Bluetooth Wireless Ear Head phones (35Hrs Playtime)",
       price: "$ 253.00",
-      imgs: "featuredimage2.png"
+      imgs: "product2.png"
     },
     {
       heading: "Apple iPhone 13 Pro Max (128GB)",
       price: "$ 320.00",
-      imgs: "featuredimage3.png"
+      imgs: "product4.png"
     },
     {
       heading: "Hp 15S AMD Ryzen 3- 5300U 15.6 Inches ",
       price: "$ 400.00",
-      imgs: "featuredimage4.png"
+      imgs: "product5.png"
     }, {
       heading: "Boult Audio Bass D3 Buds Lightweight Stereo ",
       price: "$ 300.00",
-      imgs: "featuredimage3.png"
+      imgs: "product5.png"
     },
     {
       heading: "Bluetooth Wireless Ear Head phones (35Hrs Playtime)",
       price: "$ 253.00",
-      imgs: "featuredimage2.png"
+      imgs: "product6.png"
     },
     {
       heading: "Apple iPhone 13 Pro Max (128GB)",
       price: "$ 320.00",
-      imgs: "featuredimage3.png"
+      imgs: "product7.png"
     },
     {
       heading: "Hp 15S AMD Ryzen 3- 5300U 15.6 Inches ",
       price: "$ 400.00",
-      imgs: "featuredimage4.png"
+      imgs: "product8.png"
     }
   ]
   // card two 
@@ -163,25 +165,25 @@ const Featured_products = (props) => {
   // card cart section wala data ha url search ker cart 
   const testDataNew = [
     {
-      img: "Rectangle 770.png",
+      img: "product18.png",
       textH2: "Bluetooth watchs",
       star: "Rating.png",
       price: "$ 150.00"
     },
     {
-      img: "Rectangle 770.png",
+      img: "product19.png",
       textH2: "Bluetooth watchs",
       star: "Rating.png",
       price: "$ 150.00"
     },
     {
-      img: "Rectangle 770.png",
+      img: "product16.png",
       textH2: "Bluetooth watchs",
       star: "Rating.png",
       price: "$ 150.00"
     },
     {
-      img: "Rectangle 770.png",
+      img: "product20.png",
       textH2: "Bluetooth watchs",
       star: "Rating.png",
       price: "$ 150.00"
@@ -261,14 +263,16 @@ const Featured_products = (props) => {
 
   ]
 
+  const { openPopup } = useContext(Contaxtpop)
+
   return (
     <>
       <div className="featured container">
         <div className="heading-featured-section">
-          <h2 className='common-34-1' >Featured products for you</h2>
+          <h2 onClick={openPopup}  className='common-34-1' >Featured products for you</h2>
           <div className="left-right-swiper-image">
             <img onClick={() => swiperRef.current?.slidePrev()} src={previces} alt="previces" />
-            <div className='midle' ></div>
+            <div className='midle line-x '></div>
             <img onClick={() => swiperRef.current?.slideNext()} src={next} alt="next" />
           </div>
         </div>
@@ -293,6 +297,7 @@ const Featured_products = (props) => {
                 slidesPerView: 4,
               }
             }}
+            loop={true}
           >
             {
               props.card2 === 2 &&
@@ -332,7 +337,9 @@ const Featured_products = (props) => {
             }
           </Swiper>
         </div>
-        <button className='btn-common-main featrued-btn-view-all-product  ' > VIEW ALL PRODUCTS </button>
+        <Link>
+          <button className='btn-common-main featrued-btn-view-all-product  ' > VIEW ALL PRODUCTS </button>
+        </Link>
       </div>
     </>
   )

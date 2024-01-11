@@ -5,9 +5,8 @@ const Cashondelivery = () => {
     <>
       <div className="cashondelivery">
         <div className="optional">
-          <label htmlFor="">
-            <input className='checkbox-input' type="checkbox" name="" id="" />
-            <input className='optional-inpuit common-16-2' type="text" placeholder='Freerecharge ' />
+          <label  className='common-16-2'  htmlFor="">
+            <input className='checkbox-input' type="checkbox" name="" id="" />Freerecharge
           </label>
           <p className='cashondelivery-text' >Available</p>
         </div>

@@ -25,7 +25,7 @@ const Customberreview = () => {
   ]
   return (
     <section className='container  Customberreview-main ' >
-      <h2  className='common-20-1' >Customer reviews</h2>
+      <h2 className='common-20-1' >Customer reviews</h2>
       <div className="  Customberreview">
         <div className="product-star-ratting">
           <div className="star-ratting">
@@ -58,7 +58,9 @@ const Customberreview = () => {
               })
             }
           </div>
-          <button className=' btn-see-all-reviews btn-common-main' >See all reviews</button>
+          <div className="btn-review-card">
+            <button className=' btn-see-all-reviews btn-common-main' >See all reviews</button>
+          </div>
         </div>
       </div>
     </section>

@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import banner_img from '../img/banner-img.png'
 import fire from '../img/Fire.png'
 import cart_banner from '../img/ShoppingCartOutlined.png'
+import { Link } from 'react-router-dom'
 const Banner = () => {
   return (
     <Fragment>
@@ -20,14 +21,16 @@ const Banner = () => {
             <span className='  color-yellow-text' >get 30% off</span>
           </div>
           <div className='banner-btn'>
-            <button className='btn-banner  btn-common ' >
-              <img src={cart_banner} alt="cart_banner " />
-              Shop Now
-            </button>
+            <Link to="/products" >
+              <button className='btn-banner  btn-common ' >
+                <img src={cart_banner} alt="cart_banner " />
+                Shop Now
+              </button>
+            </Link>
           </div>
         </div>
       </div>
-    </ Fragment>
+    </ Fragment >
   )
 }
 

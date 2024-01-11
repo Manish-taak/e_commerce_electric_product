@@ -15,10 +15,10 @@ const Card1 = ({data}) => {
                     <img className='top-brands-card-images' src={require(`../img/${data.imgs}`)} alt="brand_product_img" />
                 </div>
                 <div className="text-brand-swiper">
-                    <div className='common-16-2 overflow-text ' style={{ paddingLeft: "20px", WebkitLineClamp: "1", paddingRight: "20px" }} >
+                    {/* <div className='common-16-2 overflow-text ' style={{ paddingLeft: "20px", WebkitLineClamp: "1", paddingRight: "20px" }} >
                         {data.heading}
-                    </div>
-                    <div className='line-x' ></div>
+                    </div> */}
+                    {/* <div className='line-x' ></div> */}
 
                     <div className="brand-price">
                         <div className="brand-product-name">

@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 
 import cartimg from '../img/Badge W.Icon.png'
 import img1 from '../img/Rectangle 910.png'
+import { Link } from 'react-router-dom'
 
 const Cartdrop = () => {
 
@@ -24,7 +25,7 @@ const Cartdrop = () => {
                 <div className="dropbtn common-16-1 nav-item ">
                     <img className='contact' src={cartimg} alt="logoimg3sdsdsd" />
                 </div>
-                <div className="dropdown-content cartdropset ">
+                <div className="dropdown-content cartdropset">
                     <div className="cartdropdown">
                         <div className="carttop">
                             {
@@ -44,9 +45,11 @@ const Cartdrop = () => {
                             }
                         </div>
                         <div className="line-x"></div>
-                        <button className='btn-common-main'>
-                            VIEW CART
-                        </button>
+                        <Link className='btn-cart-header-hover' to="/addtocart" >
+                            <button className='btn-common-main'>
+                                VIEW CART
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </div>

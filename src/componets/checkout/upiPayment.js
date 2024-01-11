@@ -10,96 +10,29 @@ import icic from '../img/icic.svg'
 import union from '../img/union.svg'
 import pnb from '../img/pnb.svg'
 import arrowdown from '../img/ArrowDropDownOutlined.png'
-const UpiPayment = (props) => {
+import OptionCheckbox from '../../snippets/optionCheckbox'
+const UpiPayment = ({ upi, emi }) => {
   return (
     <>
       <div className="upipayment">
         <div className="upi-option">
           {
-            props.net === true ? (<>
-            </>) : (<>
-              <div className="optional">
-                <label htmlFor="">
-                  <input className='checkbox-input' type="checkbox" name="" id="" />
-                  <input className='optional-inpuit common-16-2' type="text" placeholder='Phone pay' />
-                </label>
-                <img src={phonepay} alt="phonepay" />
-              </div>
-              <div className="optional">
-                <label htmlFor="">
-                  <input className='checkbox-input' type="checkbox" name="" id="" />
-                  <input className='optional-inpuit common-16-2' type="text" placeholder='Google pay' />
-                </label>
-                <img src={google} alt="google" />
-              </div>
-              <div className="optional">
-                <label htmlFor="">
-                  <input className='checkbox-input' type="checkbox" name="" id="" />
-                  <input className='optional-inpuit common-16-2' type="text" placeholder='Paytm' />
-                </label>
-                <img src={paytm} alt="paytm" />
-              </div>
-              <div className="optional">
-                <label htmlFor="">
-                  <input className='checkbox-input' type="checkbox" name="" id="" />
-                  <input className='optional-inpuit common-16-2' type="text" placeholder='Amazon' />
-                </label>
-                <img src={ammzon} alt="ammzon" />
-              </div>
-              <div className="optional">
-                <label htmlFor="">
-                  <input className='checkbox-input' type="checkbox" name="" id="" />
-                  <input className='optional-inpuit common-16-2' type="text" placeholder='Freerecharge ' />
-                </label>
-                <img src={freelancer} alt="freelancer" />
-              </div>
-              <div className=" add-card add-upi">
-                <p className='common-16-1' >+ Add UPI</p>
-              </div>
+            upi === true && (<>
+              <OptionCheckbox url={phonepay} label={"Phone pay"} />
+              <OptionCheckbox url={google} label={"Google pay"} />
+              <OptionCheckbox url={paytm} label={"Paytm"} />
+              <OptionCheckbox url={ammzon} label={"Amazon"} />
+              <OptionCheckbox url={freelancer} label={"Freerecharge"} />
             </>)
           }
-
           {
-            props.net === true && (
+            emi === true && (
               <>
-                <div className="optional">
-                  <label htmlFor="">
-                    <input className='checkbox-input' type="checkbox" name="" id="" />
-                    <input className='optional-inpuit common-16-2' type="text" placeholder='HDFC' />
-                  </label>
-                  <img src={hdfc} alt="phonepay" />
-                </div>
-                <div className="optional">
-                  <label htmlFor="">
-                    <input className='checkbox-input' type="checkbox" name="" id="" />
-                    <input className='optional-inpuit common-16-2' type="text" placeholder='BOI' />
-                  </label>
-                  <img src={blo} alt="google" />
-                </div>
-                <div className="optional">
-                  <label htmlFor="">
-                    <input className='checkbox-input' type="checkbox" name="" id="" />
-                    <input className='optional-inpuit common-16-2' type="text" placeholder='ICICI' />
-                  </label>
-                  <img src={icic} alt="paytm" />
-                </div>
-                <div className="optional">
-                  <label htmlFor="">
-                    <input className='checkbox-input' type="checkbox" name="" id="" />
-                    <input className='optional-inpuit common-16-2' type="text" placeholder='Union' />
-                  </label>
-                  <img src={union} alt="ammzon" />
-                </div>
-                <div className="optional">
-                  <label htmlFor="">
-                    <input className='checkbox-input' type="checkbox" name="" id="" />
-                    <input className='optional-inpuit common-16-2' type="text" placeholder='PNB ' />
-                  </label>
-                  <img src={pnb} alt="freelancer" />
-                </div>
-                <div className=" add-card add-upi">
-                  <p className='common-16-1' >+ Add UPI</p>
-                </div>
+                <OptionCheckbox url={hdfc} label={"HDFC"} />
+                <OptionCheckbox url={blo} label={"BOI"} />
+                <OptionCheckbox url={icic} label={"ICICI"} />
+                <OptionCheckbox url={union} label={"Union"} />
+                <OptionCheckbox url={pnb} label={"PNB"} />
               </>
             )
           }

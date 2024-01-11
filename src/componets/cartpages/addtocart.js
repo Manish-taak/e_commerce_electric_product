@@ -1,38 +1,71 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import right from '../img/Arrowlineright.png'
+// import right from '../img/Arrowlineright.png'
 // import addtocartimage from '../img/adddtocart2.png'
 // import plus from '../img/plus.png'
 // import minus from '../img/minus.png'
 // import gray from '../img/Ellipsegray.png'
 import Cardaddtocart from '../cardtypes/cardaddtocart'
+import SectionHeading from '../../snippets/sectionHeading'
+import debitcard from '../img/debitcard.svg'
 const Addtocart = () => {
+  // color btn change 
+  const [color, setcolor] = useState(true)
+
+  const cartdata = [
+    {
+      id: "1",
+      brandname: " Apple Watch SE ",
+      brandinfo: "Silver Aluminium Case with Abyss Blue Sport Band - Regular",
+      size: "41mm",
+      style: "GPS",
+      color: "yellow",
+      shipping: "Free shipping",
+      price: "$320.00",
+      img: "watchs.png"
+    }, {
+      id: "2",
+      brandname: " Apple Watch SE ",
+      brandinfo: "Silver Aluminium Case with Abyss Blue Sport Band - Regular",
+      size: "41mm",
+      style: "GPS",
+      color: "yellow",
+      shipping: "Free shipping",
+      price: "$320.00",
+      img: "mi.png"
+    }
+  ]
   return (
     <>
       <div className=" container addtocart">
-        <div className="cartdetalis-heading">
-          <h2 className='common-34-1' >Cart Products </h2>
-          <div className="cartlink">
-            <li><Link className='common-16-2' to="/" >Home</Link></li>
-            <img src={right} alt="right" />
-            <li> <Link className='common-16-2' to="/products" >Cart</Link> </li>
-          </div>
-        </div>
-        <Cardaddtocart cartcard={true} />
+        <SectionHeading head={"Cart Products"} link1={"Home"} link2={"Cart"} />
+        {
+          cartdata.map((item) => {
+            return (
+              <React.Fragment key={item.id} >
+                <Cardaddtocart data={item} cartcard={true} />
+              </React.Fragment>
+            )
+          })
+
+        }
         <div className="line-x"></div>
         <div className="card-option">
           <div className="emicard">
             <div className='EMIAvailable'>
               <p className='common-20-1' >EMI Available</p>
-              <p className='common-16-2' >No Cost EMI offers. Id aliquam felis a egestas mi diam <span className='common-16-3' >Learn more</span></p>
+              <p className='common-16-2' >No Cost EMI offers. Id aliquam felis a egestas mi diam <span className='common-16-3'  >Learn more  </span></p>
             </div>
-            <div className="line-x"></div>
+            <div className="addto-line line-x"></div>
+            <div className="res-addto-line"></div>
             <div className="btn-caedit-debit">
-              <button className='common-14-3 Credit-btn bnt-Credit-debit ' >Credit card</button>
-              <button className='common-14-3 debit-btn bnt-Credit-debit' >debit card</button>
+              <div className='res-btn-caedit-debit-change' >
+                <button className={` ${color === true && "change-color"} common-14-3 Credit-btn bnt-Credit-debit `} onClick={() => setcolor(true)}  >Credit card</button>
+                <button className={` ${color === false && "change-color"} common-14-3 debit-btn bnt-Credit-debit `} onClick={() => setcolor(false)}  >debit card</button>
+              </div>
+              <img className='res-emi-img-show-hide' src={debitcard} alt="debitcard" />
             </div>
           </div>
-
           <div className="checkout-add-to-cart">
             <div className="total-price">
               <ul className='price-list-add-to-cart' >
@@ -60,7 +93,7 @@ const Addtocart = () => {
               </ul>
             </div>
             <div className="btn-chech-out-add-tocart">
-              <Link style={{ color: "#FFF" }} to="/checkout" >
+              <Link className='btn-check-out' style={{ color: "#FFF" }} to="/Checkoutmain/userlogin" >
                 <button style={{ cursor: "pointer" }} className=' btn-check-out btn-common-main'> Check out </button>
               </Link>
             </div>

@@ -9,78 +9,65 @@ const Progressbar = () => {
     //             }
     //     )
     // });
+
+
+    const data = [
+        {
+            id: "1",
+            numberstarting: "1",
+            highestnumber: "94%",
+            width: "94"
+
+        },
+        {
+            id: "2",
+            numberstarting: "8",
+            highestnumber: "55%",
+            width: "55"
+
+
+        },
+
+        {
+            id: "3",
+            numberstarting: "5",
+            highestnumber: "38%",
+            width: "38"
+
+
+        },
+
+        {
+            id: "4",
+            numberstarting: "4",
+            highestnumber: "10%",
+            width: "10"
+
+        },
+
+
+    ]
+
     return (
         <>
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <div className="star-ratting-progress-bar">
-                        <div className="starimg-counting">
-                           <img src={starblack} alt="" />
-                            <span className='span-progress' >5</span>
-                        </div>
-                        <div class="progress skill-bar ">
-                            <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+            {
+                data.map((item) => {
+                    return (
+                        <div className="star-ratting-progress-bar">
+                            <div className="starimg-counting">
+                                <img src={starblack} alt="" />
+                                <span className='span-progress' >{item.numberstarting}</span>
                             </div>
-                        </div>
-                        <span className='span-progress' >88%</span>
-                    </div>
-                    <div className="star-ratting-progress-bar">
-                        <div className="starimg-counting">
-                           <img src={starblack} alt="" />
-                            <span className='span-progress' >5</span>
-                        </div>
-                        <div class="progress skill-bar ">
-                            <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress">
+                                <div className="back-track"></div>
+                                <div style={{ width: `${item.width}%` }} className="uper-track"></div>
                             </div>
+                            <span className='span-progress' >{item.highestnumber}</span>
                         </div>
-                        <span className='span-progress' >88%</span>
-                    </div>
-                    <div className="star-ratting-progress-bar">
-                        <div className="starimg-counting">
-                           <img src={starblack} alt="" />
-                            <span className='span-progress' >5</span>
-                        </div>
-                        <div class="progress skill-bar ">
-                            <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="80" aria-valuemin="0" width='88%' aria-valuemax="100">
-                            </div>
-                        </div>
-                        <span className='span-progress' >88%</span>
-                    </div>
-                    <div className="star-ratting-progress-bar">
-                        <div className="starimg-counting">
-                           <img src={starblack} alt="" />
-                            <span className='span-progress' >5</span>
-                        </div>
-                        <div class="progress skill-bar ">
-                            <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
-                            </div>
-                        </div>
-                        <span className='span-progress' >88%</span>
-                    </div>
-                    <div className="star-ratting-progress-bar">
-                        <div className="starimg-counting">
-                           <img src={starblack} alt="" />
-                            <span className='span-progress' >5</span>
-                        </div>
-                        <div class="progress skill-bar ">
-                            <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
-                            </div>
-                        </div>
-                        <span className='span-progress' >88%</span>
-                    </div>
-                    <div className="star-ratting-progress-bar">
-                        <div className="starimg-counting">
-                           <img src={starblack} alt="" />
-                            <span className='span-progress' >5</span>
-                        </div>
-                        <div class="progress skill-bar ">
-                            <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
-                            </div>
-                        </div>
-                        <span className='span-progress' >88%</span>
-                    </div>
-                </div>
-            </div>
+                    )
+                })
+            }
+
         </>
     )
 }
