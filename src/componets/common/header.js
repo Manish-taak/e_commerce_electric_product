@@ -60,7 +60,7 @@ const Header = () => {
                         <div className="main_nav">
                             <nav className='simple-nav'>
                                 <div className="logo">
-                                    <Link to='/' > <img src={logoheader} alt="logoheader" /></Link>
+                                        <Link to='/' > <img src={logoheader} alt="logoheader" /></Link>
                                     {/* <img className='logofirst' src={logoimg1} alt="logoimg1" />
                                     <img src={mainlogo} alt="mainlogo" /> */}
                                 </div>

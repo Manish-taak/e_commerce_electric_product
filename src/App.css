@@ -4678,7 +4678,14 @@ input:checked+.slider:before {
 
 /* wish list */
 
-
+/* error section   */
+.error_sec{
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* error section  */
 
 /* My account  */
 .myaccount {

@@ -24,14 +24,15 @@ import UserOtp from './componets/loginRegister/userOtp.js';
 import Mainuseraccount from './componets/loginRegister/mainuseraccount.js';
 import Checkoutmain from './componets/checkout/checkoutmain.js';
 import Contaxtpop from './contaxtpop.js';
+import Error from './componets/error/error.js';
 function App() {
   const location = useLocation();
   const [click, setClick] = useState(false);
   return (
     <>
-      <Contaxtpop.Provider value={{setClick, click}}>
+      <Contaxtpop.Provider value={{ setClick, click }}>
         {
-          !location.pathname.includes('register') && <Header />
+          !location.pathname.includes('mainuseraccount') && <Header />
         }
         {/* <Header /> */}
         <Routes>
@@ -53,8 +54,9 @@ function App() {
           <Route element={<Returnorder />} path='/returnorder' ></Route>
           <Route element={<Customercare />} path='/customercare' ></Route>
           <Route element={<Mainuseraccount />} path='/mainuseraccount/:type' ></Route>
+          <Route element={<Error/>} path='*' ></Route>
         </Routes>
-        {!location.pathname.includes('register') && <Footer />}
+        {!location.pathname.includes('mainuseraccount') && <Footer />}
         <div className={`${click && "popup-overlay"}`}></div>
       </Contaxtpop.Provider>
     </>

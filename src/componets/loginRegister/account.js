@@ -18,7 +18,7 @@ const Account = ({ setsection, section }) => {
                     <Link onClick={() => setsection(true)} className='tab-user-login' >
                         <p className='common-14-2' >Log In</p>
                     </Link>
-                    <Link onClick={() => setsection(false)} className='tab-user-login' >
+                    <Link onClick={() => setsection(false)} className='tab-user-login'>
                         <p className='common-14-2' >register </p>
                     </Link>
                 </div>

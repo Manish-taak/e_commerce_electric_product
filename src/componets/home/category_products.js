@@ -446,10 +446,11 @@ export const Category_products = (props) => {
     <>
       <div className="  category container ">
         <div className="category-swiper">
-          <h1
-            className='common-34-1 show-on-scroll category-headding ' >
-            {props?.heading ? props?.heading : "Category products Collections "}
-          </h1>
+            <h1
+              className='common-34-1 show-on-scroll category-headding' style={{textTransform : "unset"}} >
+              {props?.heading ? props?.heading : "Category products Collections "}
+            </h1>
+
           <div className="next-prev-category">
             <button
               onClick={() => swiperRef.current?.slidePrev()}

@@ -13,7 +13,6 @@ import { Link } from 'react-router-dom';
 import Contaxtpop from '../../contaxtpop.js';
 // import Card2 from '../cardtypes/card2.js';
 
-
 const Featured_products = (props) => {
   const swiperRef = useRef();
   const [heart, setheart] = useState(false)
@@ -269,74 +268,74 @@ const Featured_products = (props) => {
     <>
       <div className="featured container">
         <div className="heading-featured-section">
-          <h2 onClick={openPopup}  className='common-34-1' >Featured products for you</h2>
+          <h2 onClick={openPopup} className='common-34-1' >Featured products for you</h2>
           <div className="left-right-swiper-image">
             <img onClick={() => swiperRef.current?.slidePrev()} src={previces} alt="previces" />
             <div className='midle line-x '></div>
             <img onClick={() => swiperRef.current?.slideNext()} src={next} alt="next" />
           </div>
         </div>
-        <div>
-          <Swiper className='swiper_featured_parent'
-            slidesPerView={4}
-            spaceBetween={24}
-            onBeforeInit={(swiper) => {
-              swiperRef.current = swiper;
-            }}
-            breakpoints={{
-              200: {
-                slidesPerView: 1,
-              },
-              500: {
-                slidesPerView: 2,
-              },
-              768: {
-                slidesPerView: 3,
-              },
-              1024: {
-                slidesPerView: 4,
+          <div>
+            <Swiper className='swiper_featured_parent'
+              slidesPerView={4}
+              spaceBetween={24}
+              onBeforeInit={(swiper) => {
+                swiperRef.current = swiper;
+              }}
+              breakpoints={{
+                200: {
+                  slidesPerView: 1,
+                },
+                500: {
+                  slidesPerView: 2,
+                },
+                768: {
+                  slidesPerView: 3,
+                },
+                1024: {
+                  slidesPerView: 4,
+                }
+              }}
+              loop={true}
+            >
+              {
+                props.card2 === 2 &&
+                testDataNew.map((item, index) => {
+                  return (
+                    < Fragment key={index} >
+                      <SwiperSlide className='featured_seiperslide'>
+                        < Card2 data={item} />
+                      </SwiperSlide>
+                    </Fragment>
+                  )
+                })
               }
-            }}
-            loop={true}
-          >
-            {
-              props.card2 === 2 &&
-              testDataNew.map((item, index) => {
-                return (
-                  < Fragment key={index} >
-                    <SwiperSlide className='featured_seiperslide'>
-                      < Card2 data={item} />
-                    </SwiperSlide>
-                  </Fragment>
-                )
-              })
-            }
-            {
-              props.card2 === 3 &&
-              cartdata.map((item, index) => {
-                return (
-                  < Fragment key={index} >
-                    <SwiperSlide className='featured_seiperslide'>
-                      < Card2 data={item} />
-                    </SwiperSlide>
-                  </Fragment>
-                )
-              })
-            }
-            {
-              props.card3 === 1 &&
-              featuredcarddata.map((item, index) => {
-                return (
-                  <Fragment key={index} >
-                    <SwiperSlide className='featured_seiperslide'>
-                      < Card3 data={item} />
-                    </SwiperSlide>
-                  </Fragment>
-                )
-              })
-            }
-          </Swiper>
-        </div>
+              {
+                props.card2 === 3 &&
+                cartdata.map((item, index) => {
+                  return (
+                    < Fragment key={index} >
+                      <SwiperSlide className='featured_seiperslide'>
+                        < Card2 data={item} />
+                      </SwiperSlide>
+                    </Fragment>
+                  )
+                })
+              }
+              {
+                props.card3 === 1 &&
+                featuredcarddata.map((item, index) => {
+                  return (
+                    <Fragment key={index} >
+                      <SwiperSlide className='featured_seiperslide'>
+                        < Card3 data={item} />
+                      </SwiperSlide>
+                    </Fragment>
+                  )
+                })
+              }
+            </Swiper>
+          </div>
         <Link>
           <button className='btn-common-main featrued-btn-view-all-product  ' > VIEW ALL PRODUCTS </button>
         </Link>
