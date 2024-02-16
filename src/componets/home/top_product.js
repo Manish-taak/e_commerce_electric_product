@@ -38,7 +38,7 @@ const Top_product = (props) => {
                     {
                         testData?.map((item, index) => {
                             return (
-                                <Fragment key={index} >
+                                <Fragment key={Date.now() + index} >
                                     <Card2 data={item} />
                                 </Fragment>
                             )
@@ -50,7 +50,7 @@ const Top_product = (props) => {
                             <div className="image-text-top-product">
                                 <div className="text-1-top">
                                     <h2 className='text-white-best-products' >Product for you</h2>
-                                    <p style={{color:"#fff"}} className='common-14-1' >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eu nulla nunc aenean ac donec lectus in vel.</p>
+                                    <p style={{ color: "#fff" }} className='common-14-1' >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eu nulla nunc aenean ac donec lectus in vel.</p>
                                 </div>
                                 <div className="  text-2-top">
                                     <button className=' top-btn btn-common-main' > VIEW ALL </button>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import plus from '../img/plus.png'
 import minus from '../img/minus.png'
 import gray from '../img/Ellipsegray.png'
@@ -10,13 +10,13 @@ const Cardaddtocart = (props) => {
             image: "adddtocart2.png",
             name: "Apple Watch SE",
             brandname: "Silver Aluminium Case with Abyss Blue Sport Band - Regular",
-            price : "$320.00"
+            price: "$320.00"
         },
         {
             image: "adddtocart2.png",
             name: "Apple Watch SE",
             brandname: "Silver Aluminium Case with Abyss Blue Sport Band - Regular",
-            price : "$320.00"
+            price: "$320.00"
         }
     ]
     return (
@@ -73,9 +73,9 @@ const Cardaddtocart = (props) => {
                 <div className="ordersummmary">
                     <h2 className='common-16-3' >Order Summary</h2>
                     {
-                        ordersummary.map((item) => {
+                        ordersummary.map((item, index) => {
                             return (
-                                <>
+                                <Fragment key={Date.now() + index}>
                                     <div className="ordersummary-card">
                                         <div className="addtocartimage">
                                             <img src={require(`../img/${item.image}`)} alt=" addtocartimage" />
@@ -100,7 +100,7 @@ const Cardaddtocart = (props) => {
                                             </div>
                                         </div>
                                     </div>
-                                </>
+                                </Fragment>
                             )
                         })
                     }

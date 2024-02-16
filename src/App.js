@@ -41,7 +41,7 @@ function App() {
           <Route element={<TopDeals />} path='/topDeals' ></Route>
           <Route element={<Helpcenter />} path='/helpcenter' ></Route>
           <Route element={<Getintuch />} path='/getintuch' ></Route>
-          <Route element={<Cart />} path='/cart' ></Route>
+          <Route element={<Cart />} path='/cart/:id' ></Route>
           <Route element={<Addtocart />} path='/addtocart' ></Route>
           {/* <Route element={<Checktout />} path='/checkout' ></Route> */}
           <Route element={<Checkoutmain />} path='/Checkoutmain/:check' ></Route>
@@ -54,7 +54,7 @@ function App() {
           <Route element={<Returnorder />} path='/returnorder' ></Route>
           <Route element={<Customercare />} path='/customercare' ></Route>
           <Route element={<Mainuseraccount />} path='/mainuseraccount/:type' ></Route>
-          <Route element={<Error/>} path='*' ></Route>
+          <Route element={<Error />} path='*' ></Route>
         </Routes>
         {!location.pathname.includes('mainuseraccount') && <Footer />}
         <div className={`${click && "popup-overlay"}`}></div>

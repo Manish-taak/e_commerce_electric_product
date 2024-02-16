@@ -66,29 +66,31 @@ const Arrivals = () => {
                 </div>
                 <div>
                     <Swiper className='swiper_brands_parent'
-                        slidesPerView={4}
+                        // slidesPerView={4}
+                        slidesPerView={"auto"}
                         spaceBetween={24}
                         onBeforeInit={(swiper) => {
                             swiperRef.current = swiper;
                         }}
-                        breakpoints={{
-                            200: {
-                                slidesPerView: 1,
-                                spaceBetween: 10
-                            },
-                            500: {
-                                slidesPerView: 2,
-                                spaceBetween: 10
-                            },
-                            768: {
-                                slidesPerView: 3,
-                                spaceBetween: 10
-                            },
-                            1024: {
-                                slidesPerView: 4,
-                                spaceBetween: 10
-                            }
-                        }}
+                        loop={true}
+                    // breakpoints={{
+                    //     200: {
+                    //         slidesPerView: 1,
+                    //         spaceBetween: 10
+                    //     },
+                    //     500: {
+                    //         slidesPerView: 2,
+                    //         spaceBetween: 10
+                    //     },
+                    //     768: {
+                    //         slidesPerView: 3,
+                    //         spaceBetween: 10
+                    //     },
+                    //     1024: {
+                    //         slidesPerView: 4,
+                    //         spaceBetween: 10
+                    //     }
+                    // }}
                     >
                         {/* {
                             topbrand.map((item, value) => {
@@ -106,10 +108,10 @@ const Arrivals = () => {
                             })
                         } */}
                         {
-                            topbrand.map((item, value) => {
+                            topbrand.map((item, index) => {
                                 return (
-                                    < Fragment key={value}>
-                                        <SwiperSlide className='brand_seiperslide'  >
+                                    < Fragment key={Date.now() + index}>
+                                        <SwiperSlide className='products-slider realted_seiperslide'  >
                                             <Card1 data={item} />
                                         </SwiperSlide>
                                     </ Fragment>

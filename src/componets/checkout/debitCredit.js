@@ -32,9 +32,9 @@ const DebitCredit = ({ remove, sideEX }) => {
         <div className="shpping-cards">
           <div className="shpping-Card">
             {
-              data.map((item) => {
+              data.map((item,index) => {
                 return (<React.Fragment key={item.id} >
-                  <div className="shpping-card-1">
+                  <div key={Date.now() + index} className="shpping-card-1">
                     <div className=" shpping-card-1-headding common-justify-bt">
                       <div className="card-name">
                         <img src={checkbox} alt="checkbox" />

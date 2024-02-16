@@ -71,9 +71,9 @@ const Sidebar = (props) => {
                     <div className="list-sidebar">
                         {
 
-                            data.map((item) => {
+                            data.map((item,index) => {
                                 return (
-                                    <Fragment>
+                                    <Fragment key={Date.now()+index}>
                                         <li className='list-sidebar-li'>
                                             <img src={require(`../img/${item.img}`)} alt="img" />
                                             {item.name}

@@ -66,9 +66,9 @@ const Customercare = () => {
                         </div>
                         <div className="chat-section">
                             {
-                                chatsauto.map((item) => {
+                                chatsauto.map((item,index) => {
                                     return (
-                                        <React.Fragment key={item.id}>
+                                        <React.Fragment key={Date.now() + index}>
                                             <div className="auto-chat">
                                                 <p className='auto-chat-sec common-16-2 ' >{item.chats}</p>
                                                 <p className='time-chats' >2:30 pm</p>
@@ -83,9 +83,9 @@ const Customercare = () => {
                                 <button style={{ color: "#D32F2F" }} className='chat-btn' >Cancel order</button>
                             </div>
                             {
-                                chatsauto.map((item) => {
+                                chatsauto.map((item,index) => {
                                     return (
-                                        <React.Fragment key={item.id}>
+                                        <React.Fragment key={Date.now() + index}>
                                             <div className="user-chat">
                                                 <p className='user-chat-sec common-16-2 ' >{item.chats}</p>
                                                 <p className='time-chats' >2:30 pm</p>

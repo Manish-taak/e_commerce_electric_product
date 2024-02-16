@@ -1,147 +1,147 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import eyes from '../img/blueEyes.svg'
-import { Link } from 'react-router-dom'
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import * as api from '../axios/apis';
+
+// validation email   ================================================================================
+const validateEmail = (email) => {
+  return yup.string().email().isValidSync(email)
+};
+
+// validatePhone  ====================================================================================
+const validatePhone = (phone) => {
+  return yup.number().integer().positive().test(
+    (phone) => {
+      return (phone && phone.toString().length >= 10 && phone.toString().length <= 14) ? true : false;
+    }
+  ).isValidSync(phone);
+};
+
+// validation schema ==================================================================================
+const schema = yup.object({
+  name: yup.string().required(),
+  email_or_phone: yup.string()
+    .required('Email / Phone is required')
+    .test('email_or_phone', 'Email / Phone is invalid', (value) => {
+      return validateEmail(value) || validatePhone(value);
+    }),
+  password: yup.string().required('Password is required'),
+  comfirmpassword: yup.string()
+    .oneOf([yup.ref('password'), null], 'Passwords must match')
+})
+
+// Register funcation start ============================================================================
 const Register = () => {
+  // password input show hide  ========================text-dote========================================
   const [password, setPassword] = useState(false);
   const showHide = () => {
     setPassword((per) => !per)
   }
-  const [user, setUser] = useState({
-    name: "",
-    email: "",
-    password: "",
-    comfirmpassword: ""
+
+  // yup validaiton methode ============================================================================
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(schema)
   });
-  const formRef = useRef()
-  const [error, setError] = useState("")
 
-  // // methode 1 
-  // let name, value;
-  // const onHandle = (e) => {
-  //   name = e.target.name;
-  //   value = e.target.value
-  //   setUser({ ...user, [name]: value })
-  // }
-
-  // // methode is  long + old but working ...
-  // const  submit = async (e) =>{
-  //   e.preventDefault()
-  //   const {name,email,password,comfirmpassword} = user;
-  //   const post =  await fetch("http://localhost:3000/user/create",{
-  //     method : "POST",
-  //     headers : {
-  //       "Content-Type" : "application/json"
-  //     },
-  //     body: JSON.stringify({
-  //       name,email,password,comfirmpassword
-  //     })
-  //   })
-  //   const data = await post.json();
-  //   if(data.status === 404 || !data){
-  //     window.alert("Invalid Registration")
-  //     console.log("Invalid Registration")
-  //   }else{
-  //     window.alert("Registration succesfully ")
-  //     console.log("successfully Registration")
-  //   }
-  // }
-
-
-
-
-
-  // methode 2 
-  const onHandle = (e) => {
-    let { name, value } = e.target
-    setUser({ ...user, [name]: value })
-  }
-
-  // second methode 
-  const submit = async (e) => {
-    e.preventDefault()
-    if (user.name === "") {
-      setError("Enter Your Name")
+  // yup validation onSubmit ===========================================================================
+  const onSubmit = async (data) => {
+    //  email methode emailRegex========================================================================
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (emailRegex.test(data.email_or_phone)) {
+      data.email = data.email_or_phone;
+      data.phonenumber = '';
     }
-    if (user.email === "") {
-      setError("Enter Your Email")
+    else {
+      data.email = '';
+      data.phonenumber = data.email_or_phone;
     }
-    if (user.password === "") {
-      setError("Enter Your Password")
-    }
-    if (user.comfirmpassword === "") {
-      setError("Enter Your confirm password")
-    }
-    const data = fetch("http://localhost:3000/user/create", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(user)
+    // validation ke bad delete kiya gya ===============================================================
+    delete data['email_or_phone'];
+    delete data['comfirmpassword'];
+    // on click per api heat transfer ==================================================================
+    let res = await api.register(data).then(res => {
+      // console.log(res.data.message, ' --- success')
+      window.alert(res.data.message)
+    }).catch(error => {
+      console.log(error.data, ' --- error')
+      window.alert(error.response.data.message)
     })
-      .then((res) => {
-        if (res.status === 200) {
-          window.alert
-            ("register successfully")
-        }
-
-      })
-      .catch((error) => window.alert("somethig went worg"))
   }
-
   return (
+    // ==============================================================================start register htnl S
     <>
-      {error}
       <form
-        onSubmit={(e) => submit(e)}
+        onSubmit={handleSubmit(onSubmit)}
         action=""
-        ref={formRef}
         method="post"
       >
         <div className="createaccount">
           <p className='common-20-1' >Create Your Account</p>
           <input
-            className='simple-inpuit common-16-2 '
+            {...register("name")}
+            className='simple-inpuit common-16-2'
             type="text"
             placeholder='Your name'
             name='name'
-            value={user.name}
-            onChange={onHandle}
             autoComplete='off'
           />
+          {
+            errors.name ? (<>
+              <p className='error-handle'>
+                {errors.name?.message}
+              </p>
+            </>) : (<></>)
+          }
           <input
+            {...register("email_or_phone")}
             className='simple-inpuit common-16-2 '
-            type="email"
+            type="text"
             placeholder='Email/Phone no.'
-            name='email'
-            value={user.email}
-            onChange={onHandle}
+            name='email_or_phone'
             autoComplete='off'
+
           />
+          {
+            errors.email_or_phone ? (<>
+              <p className='error-handle' >
+                {errors.email_or_phone?.message}
+              </p>
+            </>) : (<></>)
+          }
           <input
+            {...register("password")}
             className='simple-inpuit common-16-2'
             type="text"
             placeholder='password'
             name='password'
-            minLength={0}
-            maxLength={8}
-            value={user.password}
-            onChange={onHandle}
             autoComplete='off'
           />
+          {
+            errors.password ? (<>
+              <p className='error-handle' >
+                {errors.password?.message}
+              </p>
+            </>) : (<></>)
+          }
           <div className="optional">
             <input
+              {...register("comfirmpassword")}
               className='optional-inpuit common-16-2'
               type={password ? "text" : "password"}
               placeholder='Confirm password'
               name='comfirmpassword'
-              value={user.comfirmpassword}
-              onChange={onHandle}
-              autoComplete='off'
-              minLength={0}
-              maxLength={8}
             />
             <img onClick={showHide} src={eyes} alt="location" />
           </div>
+          {
+            errors.comfirmpassword ? (<>
+              <p className='error-handle' >
+                {errors.comfirmpassword?.message}
+              </p>
+            </>) : (<></>)
+          }
           <label className='ckeckbox-user'>
             <div className="check">
               <input className='check-box-returns' type="checkbox" name="" id="" />
@@ -154,5 +154,6 @@ const Register = () => {
     </>
   )
 }
+
 
 export default Register

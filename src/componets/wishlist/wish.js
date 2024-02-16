@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import rightlinerright from '../img/Arrowlineright.png'
 import Card4 from '../cardtypes/card4'
@@ -57,7 +57,7 @@ const Wish = () => {
             heading: "Hp 15S AMD Ryzen 3- 5300U 15.6 Inches ",
             price: "$ 400.00",
             imgs: "wish10.png"
-        },  {
+        }, {
             heading: "Hp 15S AMD Ryzen 3- 5300U 15.6 Inches ",
             price: "$ 400.00",
             imgs: "wish10.png"
@@ -110,7 +110,7 @@ const Wish = () => {
             heading: "Hp 15S AMD Ryzen 3- 5300U 15.6 Inches ",
             price: "$ 400.00",
             imgs: "wish10.png"
-        },  {
+        }, {
             heading: "Hp 15S AMD Ryzen 3- 5300U 15.6 Inches ",
             price: "$ 400.00",
             imgs: "wish10.png"
@@ -132,11 +132,11 @@ const Wish = () => {
                     <p className='common-16-2' >{realteddata?.length} Items</p>
                     <div className="wishlist-products">
                         {
-                            realteddata.map((item) => {
+                            realteddata.map((item, index) => {
                                 return (
-                                    <>
+                                    <Fragment key={Date.now() + index}>
                                         <Card4 card4={item} />
-                                    </>
+                                    </Fragment>
                                 )
                             })
                         }

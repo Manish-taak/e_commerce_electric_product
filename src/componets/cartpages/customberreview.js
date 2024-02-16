@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, { Fragment } from 'react'
 import Customerreviewcard from '../cardtypes/customerreviewcard'
 import cartimg1 from '../img/cart.png'
 import star from '../img/StarFilled.png'
@@ -49,11 +49,11 @@ const Customberreview = () => {
         <div className="reviewcard-btn">
           <div className='reviewcard' >
             {
-              reviewdata.map((item) => {
+              reviewdata.map((item, index) => {
                 return (
-                  <>
+                  <Fragment key={Date.now() + index} >
                     <Customerreviewcard data={item} />
-                  </>
+                  </Fragment>
                 )
               })
             }

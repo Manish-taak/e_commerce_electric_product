@@ -29,9 +29,9 @@ const Cartdrop = () => {
                     <div className="cartdropdown">
                         <div className="carttop">
                             {
-                                cartdataselect.map((item) => {
+                                cartdataselect.map((item,index) => {
                                     return (
-                                        <Fragment key={item.id} >
+                                        <Fragment key={Date.now() + index} >
                                             <div className="cart-box-select">
                                                 <img src={img1} alt="img1" />
                                                 <div className="info-price-cart">

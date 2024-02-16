@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import icic from '../img/icic.svg'
 import arrowdown from '../img/ArrowDropDownOutlined.png'
 import union from '../img/union.svg'
@@ -73,9 +73,9 @@ const Emi = () => {
               <td  style={{width:"160px"}}className='head-td' >Statuss</td>
             </tr>
             {
-              emidata.map((item) => {
+              emidata.map((item,index) => {
                 return (
-                  <>
+                  <Fragment key={Date.now() + index}>
                     <tr className='emi-table-td' >
                       <td className='month-td' >
                         <label className='common-14-4' htmlFor="">
@@ -87,7 +87,7 @@ const Emi = () => {
                       <td className='ammount-td common-14-2 ' >{item.totalcost}</td>
                       <td className='btn-available'  ><button className='available' >{item.Status}</button></td>
                     </tr>
-                  </>
+                  </Fragment>
                 )
               })
             }

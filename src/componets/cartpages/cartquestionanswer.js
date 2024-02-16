@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import downarrayimage from '../img/downarrayimage.png'
 
 
@@ -32,12 +32,12 @@ const Cartquestionanswer = () => {
       sibbling.removeAttribute('style')
     }
   }
-  function rotate(e){
+  function rotate(e) {
     let currentvalue = e.currentTarget.lastChild;
-    if(!currentvalue.getAttribute("style")){
+    if (!currentvalue.getAttribute("style")) {
       currentvalue.style.transform = "rotate(180deg)";
     }
-    else{
+    else {
       currentvalue.removeAttribute('style')
     }
   }
@@ -46,20 +46,22 @@ const Cartquestionanswer = () => {
       <div className=" container Cartquestionanswer">
         <p className='common-20-1'  >FAQ.</p>
         {
-          cartanswer.map((item) => {
+          cartanswer.map((item, index) => {
             return (
-              <div className="help-part-3-child-1">
-                <div   onClick={(e) => {
-                  sidebarAccordion(e)
-                  rotate(e);
+              <Fragment key={Date.now()+index} >
+                <div className="help-part-3-child-1">
+                  <div onClick={(e) => {
+                    sidebarAccordion(e)
+                    rotate(e);
                   }} className="text-btn-help ">
-                  <p className='common-16-3' style={{ padding: '16px 0' }} >{item.question}</p>
-                  <img className='arrow-down' src={downarrayimage} alt="downarrayimage" />
+                    <p className='common-16-3' style={{ padding: '16px 0' }} >{item.question}</p>
+                    <img className='arrow-down' src={downarrayimage} alt="downarrayimage" />
+                  </div>
+                  <p className='common-16-2 ans'  >
+                    {item.answer}
+                  </p>
                 </div>
-                <p className='common-16-2 ans'  >
-                  {item.answer}
-                </p>
-              </div>
+              </Fragment>
             )
           })
         }

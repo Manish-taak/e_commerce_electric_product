@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 
 const Cartproductedetails = () => {
   const productdetails = [
@@ -17,13 +17,13 @@ const Cartproductedetails = () => {
       <div className=" container products-details">
         <h2 className='common-20-1'>Product Details</h2>
         {
-          productdetails.map((item)=>{
-            return(
-              <>
-              <p className='common-16-2' >
-                {item.details}
-              </p>
-              </>
+          productdetails.map((item, index) => {
+            return (
+              <Fragment key={Date.now() + index} >
+                <p className='common-16-2' >
+                  {item.details}
+                </p>
+              </Fragment>
             )
           })
 

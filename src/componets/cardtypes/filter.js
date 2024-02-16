@@ -2,8 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { Fragment } from "react";
 import { Link } from 'react-router-dom'
 import upbtn from '../img/KeyboardArrowUpOutlined.png'
+import * as  apis from '../axios/apis'
 const Filter = (props) => {
     const [open1, setopen1] = useState(false)
+    const [cate_data, setcate_data] = useState()
+    const [color, setcolor] = useState()
+    const [brands, setbrands] = useState()
     const data = [
         {
             image: "mi.png",
@@ -79,6 +83,38 @@ const Filter = (props) => {
             currentvalue.removeAttribute('style')
         }
     }
+
+    let categorydata = async () => {
+        let data = await apis.getcategorydata().then((res) => {
+            return res.data
+        }).catch((err) => console.log(err))
+        setcate_data(data)
+    }
+    let colorget = async () => {
+        let colordata = await apis.getcolor().then(res => { return res.data }).catch(err => console.log(err))
+        setcolor(colordata)
+    }
+
+    let brandsget = async () => {
+        let data = await apis.getbrands().then((res) => { return res.data }).catch(err => console.log(err))
+        setbrands(data)
+    }
+
+    useEffect(() => {
+        categorydata()
+        colorget()
+        brandsget()
+    }, [])
+
+
+    function myFunction(e) {
+        var elems = document.querySelector(".click-active");
+        if (elems !== null) {
+            elems.classList.remove("click-active");
+        }
+        e.target.className = "click-active";
+    }
+
     const sidebarData = [
         {
             heading: "Category",
@@ -120,21 +156,22 @@ const Filter = (props) => {
             ]
         },
     ]
+
     return (
         <>
             <div className={props.filter === true ? "filter-side active-side-filter" : "filter-side"}>
                 <div className=' filter-top-section  filter-side-part-1'>
                     <p>Filter</p>
-                    <button className="fliterclear"> CLEAR ALL</button>
+                    <button className="fliterclear" onClick={() => { props.getFilterRecord("clear", "") }}> CLEAR ALL</button>
                     <svg onClick={() => props.setfilter(false)} className='filtercut' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <path d="M18.295 7.115C18.6844 6.72564 18.6844 6.09436 18.295 5.705C17.9056 5.31564 17.2744 5.31564 16.885 5.705L12.7071 9.88289C12.3166 10.2734 11.6834 10.2734 11.2929 9.88289L7.115 5.705C6.72564 5.31564 6.09436 5.31564 5.705 5.705C5.31564 6.09436 5.31564 6.72564 5.705 7.115L9.88289 11.2929C10.2734 11.6834 10.2734 12.3166 9.88289 12.7071L5.705 16.885C5.31564 17.2744 5.31564 17.9056 5.705 18.295C6.09436 18.6844 6.72564 18.6844 7.115 18.295L11.2929 14.1171C11.6834 13.7266 12.3166 13.7266 12.7071 14.1171L16.885 18.295C17.2744 18.6844 17.9056 18.6844 18.295 18.295C18.6844 17.9056 18.6844 17.2744 18.295 16.885L14.1171 12.7071C13.7266 12.3166 13.7266 11.6834 14.1171 11.2929L18.295 7.115Z" fill="#495F6A" />
                     </svg>
                 </div>
                 <div className="filter-data">
                     {
-                        sidebarData.map((item) => {
+                        sidebarData.map((item,index) => {
                             return (
-                                <>
+                                <Fragment key={Date.now() + index}>
                                     <div className='all-same-products' >
                                         <div className="category-btn-show-hide" onClick={(e) => { sidebarAccordion(e); rotate(e) }}>
                                             <p className="common-p-16" >{item.heading}</p>
@@ -144,11 +181,11 @@ const Filter = (props) => {
                                             item?.heading === "Category" && (
                                                 <ul className='filter_list all-option'>
                                                     {
-                                                        item?.categoryList?.map((item, index) => {
+                                                        cate_data?.data.map((item, index) => {
                                                             return (
-                                                                <>
-                                                                    <li key={index} className=' active-options filter-li hotofferli  dropdowncategory' >{item} </li>
-                                                                </>
+                                                                <Fragment key={Date.now() + index}>
+                                                                    <li key={item} className=' click-active filter-li hotofferli  dropdowncategory' onClick={(e) => { props.getFilterRecord("category", item.name); myFunction(e) }}>{item.name} </li>
+                                                                </Fragment>
                                                             )
                                                         })
                                                     }
@@ -162,10 +199,16 @@ const Filter = (props) => {
                                             item?.heading === "Price" && (
                                                 <>
                                                     <div className="input-range all-option" >
-                                                        <input className='input-low-high' type="range" />
+                                                        <input
+                                                            className='input-low-high'
+                                                            type="range"
+                                                            min={50}
+                                                            max={500}
+                                                            onChange={(e) => { props?.setprice(e.target.value) }}
+                                                        />
                                                         <div className="low-high-price">
-                                                            <p> low:  <span>$50.00</span></p>
-                                                            <p>  High:  <span>$500.00</span></p>
+                                                            <p> low:  <span>50</span></p>
+                                                            <p>  High:  <span>{props.price}</span></p>
                                                         </div>
                                                     </div>
                                                 </>
@@ -177,11 +220,11 @@ const Filter = (props) => {
                                                     <div className="selete-color all-option ">
                                                         <div className="color-line-1">
                                                             {
-                                                                item?.colorList?.map((item) => {
+                                                                color?.data.map((item,index) => {
                                                                     return (
-                                                                        <>
-                                                                            <li className='color-dot' style={{ background: `${item}` }} ></li>
-                                                                        </>
+                                                                        <Fragment key={Date.now() + index}>
+                                                                            <li className='color-dot' onClick={() => { props.getFilterRecord("color", item.color) }} style={{ background: `${item.color_code}` }} ></li>
+                                                                        </Fragment>
                                                                     )
                                                                 })
                                                             }
@@ -196,10 +239,10 @@ const Filter = (props) => {
                                                 <>
                                                     <ul className='filter_list all-option '>
                                                         {
-                                                            item?.brandsList?.map((item, index) => {
+                                                            brands?.data.map((item, index) => {
                                                                 return (
                                                                     <>
-                                                                        <li key={index} className=' active-options filter-li hotofferli  dropdowncategory' >{item} </li>
+                                                                        <li key={Date.now() + index} onClick={() => { props.getFilterRecord("brand", item.brand_name) }} className=' active-options filter-li hotofferli  dropdowncategory' >{item.brand_name} </li>
                                                                     </>
                                                                 )
                                                             })
@@ -219,7 +262,7 @@ const Filter = (props) => {
                                                             item?.reviewList?.map((item, index) => {
                                                                 return (
                                                                     <>
-                                                                        <li key={index} className=' active-options filter-li hotofferli  dropdowncategory' >{item} </li>
+                                                                        <li key={Date.now() + index} className=' active-options filter-li hotofferli  dropdowncategory' >{item} </li>
                                                                     </>
                                                                 )
                                                             })
@@ -239,7 +282,7 @@ const Filter = (props) => {
                                                             item?.discountList?.map((item, index) => {
                                                                 return (
                                                                     <>
-                                                                        <li key={index} className=' active-options filter-li hotofferli  dropdowncategory' >{item} </li>
+                                                                        <li key={Date.now() + index} className=' active-options filter-li hotofferli  dropdowncategory' >{item} </li>
                                                                     </>
                                                                 )
                                                             })
@@ -252,7 +295,7 @@ const Filter = (props) => {
                                             )
                                         }
                                     </div>
-                                </>
+                                </Fragment>
                             )
                         })
                     }
@@ -267,3 +310,9 @@ const Filter = (props) => {
 }
 
 export default Filter
+
+
+
+
+
+

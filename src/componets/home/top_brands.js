@@ -73,33 +73,34 @@ const Top_brands = () => {
                     <Swiper className='swiper_brands_parent'
                         slidesPerView={4}
                         spaceBetween={24}
+                        loop={true}
                         onBeforeInit={(swiper) => {
                             swiperRef.current = swiper;
                         }}
-                        breakpoints={{
-                            200:{
-                              slidesPerView: 1,
-                              spaceBetween: 10
-                            },
-                            500: {
-                              slidesPerView: 2,
-                              spaceBetween: 10
-                            },
-                            768: {
-                              slidesPerView: 3,
-                              spaceBetween: 10
-                            },
-                            1024:{
-                              slidesPerView: 4,
-                              spaceBetween: 10
-                            }
-                          }}
+                    // breakpoints={{
+                    //     200:{
+                    //       slidesPerView: 1,
+                    //       spaceBetween: 10
+                    //     },
+                    //     500: {
+                    //       slidesPerView: 2,
+                    //       spaceBetween: 10
+                    //     },
+                    //     768: {
+                    //       slidesPerView: 3,
+                    //       spaceBetween: 10
+                    //     },
+                    //     1024:{
+                    //       slidesPerView: 4,
+                    //       spaceBetween: 10
+                    //     }
+                    //   }}
                     >
                         {
-                            topbrand.map((item, value) => {
+                            topbrand.map((item, index) => {
                                 return (
-                                    < Fragment key={value}>
-                                        <SwiperSlide className='brand_seiperslide'  >
+                                    < Fragment key={Date.now() + index}>
+                                        <SwiperSlide className='products-slider realted_seiperslide '  >
                                             <Card1 data={item} />
                                         </SwiperSlide>
                                     </ Fragment>
@@ -108,7 +109,7 @@ const Top_brands = () => {
                         }
                     </Swiper>
                 </div>
-                <button className='btn-common-main brand-btn-view-all-product  ' > VIEW ALL PRODUCTS </button>
+                <button className='btn-common-main brand-btn-view-all-product' > VIEW ALL PRODUCTS </button>
             </div>
         </>
     )

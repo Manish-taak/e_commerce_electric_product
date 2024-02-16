@@ -70,35 +70,37 @@ const Related_item = () => {
         </div>
         <div>
           <Swiper className='swiper_realted_parent'
-            slidesPerView={4}
+            // slidesPerView={4}
             spaceBetween={24}
+            slidesPerView={"auto"}
             onBeforeInit={(swiper) => {
               swiperRef.current = swiper;
             }}
-            breakpoints={{
-              200:{
-                slidesPerView: 1,
-                spaceBetween: 10
-              },
-              500: {
-                slidesPerView: 2,
-                spaceBetween: 10
-              },
-              768: {
-                slidesPerView: 3,
-                spaceBetween: 10
-              },
-              1024:{
-                slidesPerView: 4,
-                spaceBetween: 10
-              }
-            }}
+            loop={true}
+          // breakpoints={{
+          //   200:{
+          //     slidesPerView: 1,
+          //     spaceBetween: 10
+          //   },
+          //   500: {
+          //     slidesPerView: 2,
+          //     spaceBetween: 10
+          //   },
+          //   768: {
+          //     slidesPerView: 3,
+          //     spaceBetween: 10
+          //   },
+          //   1024:{
+          //     slidesPerView: 4,
+          //     spaceBetween: 10
+          //   }
+          // }}
           >
             {
               realteddata.map((item, index) => {
                 return (
-                  <Fragment key={index}  >
-                    <SwiperSlide className='realted_seiperslide' >
+                  <Fragment key={Date.now() + index}  >
+                    <SwiperSlide className='products-slider realted_seiperslide' >
                       <Card4 card4={item} />
                     </SwiperSlide>
                   </Fragment>

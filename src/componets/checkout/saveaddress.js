@@ -24,9 +24,9 @@ const Saveaddress = () => {
       <div className="saveaddress-section">
         <h2 className='common-16-3' >Delivery Address</h2>
         {
-          data.map((item) => {
+          data.map((item,index) => {
             return (
-              <Fragment key={item.id} >
+              <Fragment key={Date.now() + index} >
                 <div className="saveaddress-card">
                   <div className="customer-name-address">
                     <div className="customer-name">

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import starblack from '../img/Starblack.png'
 const Progressbar = () => {
     //   // Progress bars
@@ -51,19 +51,21 @@ const Progressbar = () => {
     return (
         <>
             {
-                data.map((item) => {
+                data.map((item, index) => {
                     return (
-                        <div className="star-ratting-progress-bar">
-                            <div className="starimg-counting">
-                                <img src={starblack} alt="" />
-                                <span className='span-progress' >{item.numberstarting}</span>
+                        <Fragment key={Date.now()+index} >
+                            <div className="star-ratting-progress-bar">
+                                <div className="starimg-counting">
+                                    <img src={starblack} alt="" />
+                                    <span className='span-progress' >{item.numberstarting}</span>
+                                </div>
+                                <div className="progress">
+                                    <div className="back-track"></div>
+                                    <div style={{ width: `${item.width}%` }} className="uper-track"></div>
+                                </div>
+                                <span className='span-progress' >{item.highestnumber}</span>
                             </div>
-                            <div class="progress">
-                                <div className="back-track"></div>
-                                <div style={{ width: `${item.width}%` }} className="uper-track"></div>
-                            </div>
-                            <span className='span-progress' >{item.highestnumber}</span>
-                        </div>
+                        </Fragment>
                     )
                 })
             }

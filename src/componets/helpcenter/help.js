@@ -66,9 +66,9 @@ const Help = () => {
           </div>
           <div className="help-part-3">
             {
-              answers.map((item) => {
+              answers.map((item,index) => {
                 return (
-                  <Fragment key={item.id} >
+                  <Fragment key={Date.now() + index} >
                     <div onClick={(e) => { clickEventt(e) }}>
                       <Questions data={item}/>
                     </div>

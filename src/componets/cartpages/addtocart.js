@@ -40,9 +40,9 @@ const Addtocart = () => {
       <div className=" container addtocart">
         <SectionHeading head={"Cart Products"} link1={"Home"} link2={"Cart"} />
         {
-          cartdata.map((item) => {
+          cartdata.map((item,index) => {
             return (
-              <React.Fragment key={item.id} >
+              <React.Fragment key={Date.now() + index} >
                 <Cardaddtocart data={item} cartcard={true} />
               </React.Fragment>
             )

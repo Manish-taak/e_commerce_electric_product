@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import rightlinerright from '../img/Arrowlineright.png'
 import { Link } from 'react-router-dom'
 import starimage from '../img/Rating.png'
@@ -13,153 +13,107 @@ import Productscard from "../cardtypes/productscard";
 import Featured_products from "../home/featured_products";
 import Shortby from "../headerdropdown/shortby";
 import Filter from "../cardtypes/filter";
+import * as api from "../axios/apis"
 
 const Section_1_products = (props) => {
 
-    const data = [
-        {
-            image: "product17.png",
-            productsname: "Apple Watch Series 7",
-            price: "$ 158.00",
-            in_of_stok: "In stock"
-        },
-        {
-            image: "product18.png",
-            productsname: "Apple Watch Series 7",
-            price: "$ 158.00",
-            in_of_stok: "In stock"
-        },
-        {
-            image: "product19.png",
-            productsname: "Apple Watch Series 7",
-            price: "$ 158.00",
-            in_of_stok: "In stock"
-        },
-        {
-            image: "product20.png",
-            productsname: "Apple Watch Series 7",
-            price: "$ 158.00",
-            in_of_stok: "In stock"
-        },
-        {
-            image: "product21.png",
-            productsname: "Apple Watch Series 7",
-            price: "$ 158.00",
-            in_of_stok: "In stock"
-        },
-        {
-            image: "product22.png",
-            productsname: "Apple Watch Series 7",
-            price: "$ 158.00",
-            in_of_stok: "In stock"
-        },
-        {
-            image: "product23.png",
-            productsname: "Apple Watch Series 7",
-            price: "$ 158.00",
-            in_of_stok: "In stock"
-        },
-        {
-            image: "product24.png",
-            productsname: "Apple Watch Series 7",
-            price: "$ 158.00",
-            in_of_stok: "In stock"
-        },
-        {
-            image: "product25.png",
-            productsname: "Apple Watch Series 7",
-            price: "$ 158.00",
-            in_of_stok: "In stock"
+
+    const [filter, setfilter] = useState(false)
+    const [short, setshort] = useState(false)
+    //  filter state 
+    const [data, setdata] = useState([]); // get all data backend   
+    const [color, setcolor] = useState("")
+    const [category1, setcategory1] = useState("")
+    const [price, setprice] = useState("")
+    const [brand, setbrand] = useState("")
+    const [filterdata, setfilterdata] = useState([])
+
+
+    const getProducts = async () => {
+        let productsdata = await api.getdata().then((res) => { return res.data }).catch((err) => console.error(err, "erorr"))
+        setdata(productsdata.data);
+        setfilterdata(productsdata.data);
+    }
+
+    const getFilterRecord = async (key, value) => {
+        if (key === "clear") {
+            setcategory1("");
+            setbrand("");
+            setcolor("");
+            setprice("")
+            setfilterdata(data);
+            return
         }
-    ]
-    // const category = [
-    //     {
-    //         categoryname: "Watches"
-    //     },
-    //     {
-    //         categoryname: "Mobiles"
-    //     },
-    //     {
-    //         categoryname: "Laptops"
-    //     },
-    //     {
-    //         categoryname: "Tablets"
-    //     },
-    //     {
-    //         categoryname: "Headphones"
-    //     },
-    //     {
-    //         categoryname: "Speakers"
-    //     },
+        if (key === "category") {
+            if (category1 !== value) {
+                console.log(value, "valuee")
+                let testdata = data?.filter((item) => {
+                    return item.category.name === value
+                })
+                if (color !== "") {
+                    testdata = testdata.filter((item) => {
+                        return item.color.color === color
+                    })
+                }
+                if (brand !== "") {
+                    testdata = testdata.filter((item) => {
+                        return item.brands.brand_name === brand
+                    })
+                }
+                setcategory1(value);
+                setfilterdata(testdata)
+            }
+        }
 
-    // ]
-    // const brands = [
-    //     {
-    //         brands: "Watches"
-    //     },
-    //     {
-    //         brands: "Mobiles"
-    //     },
-    //     {
-    //         brands: "Laptops"
-    //     },
-    //     {
-    //         brands: "Tablets"
-    //     },
-    //     {
-    //         brands: "Headphones"
-    //     },
-    //     {
-    //         brands: "Speakers"
-    //     },
+        if (key === "brand") {
+            if (brand !== value) {
+                let testdata = data?.filter((item) => {
+                    return item.brands.brand_name === value
+                })
+                if (color !== "") {
+                    testdata = testdata.filter((item) => {
+                        return item.color.color === color
+                    })
+                }
+                if (category1 !== "") {
+                    testdata = testdata.filter((item) => {
+                        return item.category.name === category1
+                    })
+                }
+                setbrand(value);
+                setfilterdata(testdata)
+            }
+        }
 
-    // ]
-    // const customer = [
-    //     {
-    //         customer: "Watches"
-    //     },
-    //     {
-    //         customer: "Mobiles"
-    //     },
-    //     {
-    //         customer: "Laptops"
-    //     },
-    //     {
-    //         customer: "Tablets"
-    //     },
-    //     {
-    //         customer: "Headphones"
-    //     },
-    //     {
-    //         customer: "Speakers"
-    //     },
+        if (key === "color") {
+            if (color !== value) {
+                let testdata = data?.filter((item) => {
+                    return item.color.color === value
+                })
+                if (category1 !== "") {
+                    testdata = testdata.filter((item) => {
+                        return item.category.name === category1
+                    })
+                }
+                if (brand !== "") {
+                    testdata = testdata.filter((item) => {
+                        return item.brands.brand_name === brand
+                    })
+                }
+                setcolor(value);
+                setfilterdata(testdata)
+            }
+        }
+    }
 
-    // ]
+    console.log(filterdata,'------------product list');
 
-    // const discount = [
-    //     {
-    //         discount: "Watches"
-    //     },
-    //     {
-    //         discount: "Mobiles"
-    //     },
-    //     {
-    //         discount: "Laptops"
-    //     },
-    //     {
-    //         discount: "Tablets"
-    //     },
-    //     {
-    //         discount: "Headphones"
-    //     },
-    //     {
-    //         discount: "Speakers"
-    //     },
 
-    // ]
-    const [color, setcolor] = useState(false)
-    const [filter,setfilter]=useState(false)
-    const [short,setshort] = useState(false)
+    useEffect(() => {
+        getProducts()
+    }, [])
+
+
     return (
         <>
             <section className='container  productsmainpage'>
@@ -172,14 +126,13 @@ const Section_1_products = (props) => {
                     </div>
                 </div>
                 <div className="filter-and-card">
-                  {  console.log(filter,"setfilter==")}
-                    <Filter filter={filter} setfilter={setfilter} />
+                    <Filter price={price} setprice={setprice} filter={filter} setfilter={setfilter} getFilterRecord={getFilterRecord} />
                     <div className="products-card-side">
                         <div className="products-card-side-heading">
                             <div className="media-products">
                                 <p className="common-16-2" >Showing 1–9 of 200 results </p>
                                 <div className="filter-and-sort" >
-                                    <button onClick={()=>setfilter(!filter)}  className="btn-tr common-14-3 " >Filter <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <button onClick={() => setfilter(!filter)} className="btn-tr common-14-3 " >Filter <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                         <path d="M8.33333 15H11.6667V13.3333H8.33333V15ZM2.5 5V6.66667H17.5V5H2.5ZM5 10.8333H15V9.16667H5V10.8333Z" fill="#422659" />
                                     </svg></button>
                                     <button className="btn-tr common-14-3 " >SORT BY <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -190,7 +143,7 @@ const Section_1_products = (props) => {
                             <div className="sortby">
                                 <p className="common-16-2" >Showing 1–9 of 200 results </p>
                                 <Shortby short={short} setshort={setshort} />
-                                <button  onClick={()=>setshort(!short)}  className="btn-tr common-14-3 " >SORT BY <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <button onClick={() => setshort(!short)} className="btn-tr common-14-3 " >SORT BY <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                     <path d="M5.58782 7.74563C5.91221 7.42123 6.43807 7.42095 6.76282 7.74499L9.29366 10.2703C9.68401 10.6598 10.316 10.6598 10.7063 10.2703L13.2372 7.74499C13.5619 7.42095 14.0878 7.42123 14.4122 7.74563C14.7368 8.07027 14.7368 8.59662 14.4122 8.92127L10.7071 12.6263C10.3166 13.0169 9.68342 13.0169 9.29289 12.6263L5.58782 8.92127C5.26318 8.59662 5.26318 8.07027 5.58782 7.74563Z" fill="#422659" />
                                 </svg></button>
                             </div>
@@ -200,10 +153,12 @@ const Section_1_products = (props) => {
                         }
                         <div className="products-cards-group">
                             {
-                                data.map((item, index) => {
+                                filterdata.map((item, index) => {
                                     return (
-                                        <Fragment key={index} >
-                                            <Productscard productscard={item} />
+                                        <Fragment key={Date.now() + index} >
+                                            <Link to={`/cart/${item.id}`}  >
+                                                <Productscard productscard={item} />
+                                            </Link>
                                         </Fragment>
                                     )
                                 })
@@ -226,6 +181,8 @@ const Section_1_products = (props) => {
                     </div>
                 </div>
             </section>
+            div
+            
             <Featured_products card2={2} />
         </>
     )
@@ -233,3 +190,46 @@ const Section_1_products = (props) => {
 
 export default Section_1_products
 
+
+
+
+
+
+// // Example usage in your code
+// const createdProduct = await prisma.product.create({
+//     data: {
+//       name: "Example Product",
+//       combinations: {
+//         create: [
+//           { name: "Combination 1" },
+//           { name: "Combination 2" },
+//           // Add more combinations as needed
+//         ],
+//       },
+//     },
+//     include: {
+//       combinations: true,
+//     },
+//   });
+
+
+
+// //   // schema.prisma
+
+// model Product {
+//     id        Int      @id @default(autoincrement())
+//     name      String
+//     // Add other product fields as needed
+  
+//     // Define a one-to-many relation with Combination
+//     combinations Combination[]
+//   }
+  
+//   model Combination {
+//     id        Int      @id @default(autoincrement())
+//     name      String
+//     // Add other combination fields as needed
+//     // Define a foreign key to link to the Product model
+//     productId Int
+//     product   Product  @relation(fields: [productId], references: [id])
+//   }

@@ -77,12 +77,12 @@ const Order = () => {
                     <p className='common-20-1' >My Orders</p>
                     <div className="order-details-tables">
                         <table className='order-list-table' >
-                            <tr  className='order-data-list'  >
-                                <td style={{ width: "233px", padding:"14px 10px 10px 14px" , textTransform:"capitalize" }} className='common-14-2' >Order</td>
-                                <td style={{ width: "233px", padding:"14px 10px 10px 14px" , textTransform:"capitalize" }} className='common-14-2' >Order ID</td>
-                                <td style={{ width: "233px", padding:"14px 10px 10px 14px" , textTransform:"capitalize" }} className='common-14-2' >Date</td>
-                                <td style={{ width: "233px", padding:"14px 10px 10px 14px" , textTransform:"capitalize" }} className='common-14-2' >Tatal</td>
-                                <td style={{ width: "160px", padding:"14px 10px 10px 14px" , textTransform:"capitalize" }}className='common-14-2' >Status</td>
+                            <tr className='order-data-list'  >
+                                <td style={{ width: "233px", padding: "14px 10px 10px 14px", textTransform: "capitalize" }} className='common-14-2' >Order</td>
+                                <td style={{ width: "233px", padding: "14px 10px 10px 14px", textTransform: "capitalize" }} className='common-14-2' >Order ID</td>
+                                <td style={{ width: "233px", padding: "14px 10px 10px 14px", textTransform: "capitalize" }} className='common-14-2' >Date</td>
+                                <td style={{ width: "233px", padding: "14px 10px 10px 14px", textTransform: "capitalize" }} className='common-14-2' >Tatal</td>
+                                <td style={{ width: "160px", padding: "14px 10px 10px 14px", textTransform: "capitalize" }} className='common-14-2' >Status</td>
                             </tr>
                             {/* <tr className='common-14-4'>
                                 <th style={{ width: "233px" }} >Order</th>
@@ -92,16 +92,16 @@ const Order = () => {
                                 <th style={{ width: "160px" }} >Status</th>
                             </tr> */}
                             {
-                                data.map((item) => {
+                                data.map((item, index) => {
                                     return (
-                                        <React.Fragment key={item.id} >
+                                        <React.Fragment key={Date.now() + index} >
                                             <tr className='order-data-list' >
-                                                <td style={{ width: "233px" ,padding :"14px 10px 10px 14px " }}  className="table-order-td" > <img src={require(`../componets/img/${item.img}`)} alt="orderd" /> <p className=' common-14-4 products-details-order' >Boat Rockerz 425 Bluetooth Wireless</p></td>
-                                                <td style={{ width: "233px" ,padding :"14px 10px 10px 14px " }}  className='common-14-2' >{item.orderid}</td>
-                                                <td style={{ width: "233px" ,padding :"14px 10px 10px 14px " }}  className='common-14-4' >{item.date}</td>
-                                                <td style={{ width: "233px" ,padding :"14px 10px 10px 14px " }}  className='common-14-2' >{item.tatal}</td>
+                                                <td style={{ width: "233px", padding: "14px 10px 10px 14px " }} className="table-order-td" > <img src={require(`../componets/img/${item.img}`)} alt="orderd" /> <p className=' common-14-4 products-details-order' >Boat Rockerz 425 Bluetooth Wireless</p></td>
+                                                <td style={{ width: "233px", padding: "14px 10px 10px 14px " }} className='common-14-2' >{item.orderid}</td>
+                                                <td style={{ width: "233px", padding: "14px 10px 10px 14px " }} className='common-14-4' >{item.date}</td>
+                                                <td style={{ width: "233px", padding: "14px 10px 10px 14px " }} className='common-14-2' >{item.tatal}</td>
                                                 {
-                                                    item.Status === "Delivered" ? <td style={{ width: "160px"}} className=' oreder-btns Delivered' >Delivered</td> : item.Status === "Pending" ? <td style={{ width: "160px" }} className=' oreder-btns Pending ' >Pending</td> : item.Status === "Cancelled" ? <td style={{ width: "160px" }} className='oreder-btns Cancelled ' >Cancelled</td> : ""
+                                                    item.Status === "Delivered" ? <td style={{ width: "160px" }} className=' oreder-btns Delivered' >Delivered</td> : item.Status === "Pending" ? <td style={{ width: "160px" }} className=' oreder-btns Pending ' >Pending</td> : item.Status === "Cancelled" ? <td style={{ width: "160px" }} className='oreder-btns Cancelled ' >Cancelled</td> : ""
                                                 }
                                             </tr>
                                         </React.Fragment>

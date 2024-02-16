@@ -1,4 +1,4 @@
-import { Fragment, useContext, useRef, useState } from 'react';
+import { Fragment, useContext, useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import next from '../img/ArrowBackFilled (1).png'
 import previces from '../img/ArrowBackFilled.png'
@@ -11,6 +11,9 @@ import Card3 from '../cardtypes/card3.js';
 import Card2 from '../cardtypes/card2';
 import { Link } from 'react-router-dom';
 import Contaxtpop from '../../contaxtpop.js';
+import { Autoplay } from 'swiper/modules';
+import * as api from "../axios/apis"
+
 // import Card2 from '../cardtypes/card2.js';
 
 const Featured_products = (props) => {
@@ -264,6 +267,14 @@ const Featured_products = (props) => {
 
   const { openPopup } = useContext(Contaxtpop)
 
+  const getProducts = async () => {
+    let productsdata = await api.getdata().then((res) => { return res.data }).catch((err) => console.error(err, "erorr"))
+    console.log(productsdata, "============================products")
+  }
+
+  useEffect(() => {
+    getProducts()
+  })
   return (
     <>
       <div className="featured container">
@@ -275,67 +286,69 @@ const Featured_products = (props) => {
             <img onClick={() => swiperRef.current?.slideNext()} src={next} alt="next" />
           </div>
         </div>
-          <div>
-            <Swiper className='swiper_featured_parent'
-              slidesPerView={4}
-              spaceBetween={24}
-              onBeforeInit={(swiper) => {
-                swiperRef.current = swiper;
-              }}
-              breakpoints={{
-                200: {
-                  slidesPerView: 1,
-                },
-                500: {
-                  slidesPerView: 2,
-                },
-                768: {
-                  slidesPerView: 3,
-                },
-                1024: {
-                  slidesPerView: 4,
-                }
-              }}
-              loop={true}
-            >
-              {
-                props.card2 === 2 &&
-                testDataNew.map((item, index) => {
-                  return (
-                    < Fragment key={index} >
-                      <SwiperSlide className='featured_seiperslide'>
-                        < Card2 data={item} />
-                      </SwiperSlide>
-                    </Fragment>
-                  )
-                })
-              }
-              {
-                props.card2 === 3 &&
-                cartdata.map((item, index) => {
-                  return (
-                    < Fragment key={index} >
-                      <SwiperSlide className='featured_seiperslide'>
-                        < Card2 data={item} />
-                      </SwiperSlide>
-                    </Fragment>
-                  )
-                })
-              }
-              {
-                props.card3 === 1 &&
-                featuredcarddata.map((item, index) => {
-                  return (
-                    <Fragment key={index} >
-                      <SwiperSlide className='featured_seiperslide'>
-                        < Card3 data={item} />
-                      </SwiperSlide>
-                    </Fragment>
-                  )
-                })
-              }
-            </Swiper>
-          </div>
+        <div>
+          <Swiper className='swiper_featured_parent'
+            spaceBetween={24}
+            onBeforeInit={(swiper) => {
+              swiperRef.current = swiper;
+            }}
+            mousewheel={true}
+            slidesPerView={"auto"}
+            // breakpoints={{
+            //   200: {
+            //     slidesPerView: 1,
+
+            //   },
+            //   500: {
+            //     slidesPerView: 2,
+            //   },
+            //   768: {
+            //     slidesPerView: 3,
+            //   },
+            //   1024: {
+            //     slidesPerView: 4,
+            //   }
+            // }}
+            loop={true}
+          >
+            {
+              props.card2 === 2 &&
+              testDataNew.map((item, index) => {
+                return (
+                  < Fragment key={Date.now() + index} >
+                    <SwiperSlide className='products-slider featured_seiperslide'>
+                      < Card2 data={item} />
+                    </SwiperSlide>
+                  </Fragment>
+                )
+              })
+            }
+            {
+              props.card2 === 3 &&
+              cartdata.map((item, index) => {
+                return (
+                  < Fragment key={Date.now() + index} >
+                    <SwiperSlide className='products-slider featured_seiperslide'>
+                      < Card2 data={item} />
+                    </SwiperSlide>
+                  </Fragment>
+                )
+              })
+            }
+            {
+              props.card3 === 1 &&
+              featuredcarddata.map((item, index) => {
+                return (
+                  <Fragment key={Date.now() + index} >
+                    <SwiperSlide className='products-slider featured_seiperslide'>
+                      < Card3 data={item} />
+                    </SwiperSlide>
+                  </Fragment>
+                )
+              })
+            }
+          </Swiper>
+        </div>
         <Link>
           <button className='btn-common-main featrued-btn-view-all-product  ' > VIEW ALL PRODUCTS </button>
         </Link>
