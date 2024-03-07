@@ -1,8 +1,10 @@
 import React from 'react'
 import star from '../img/StarFilled.png'
-import userimg from '../img/Avatar.png'
-const Customerreviewcard = ({data}) => {
+import userimg from '../img/userboyimage.png'
+import whitestar from "../img/trancestar.png"
+import manish from "../img/manish.jpg"
 
+const Customerreviewcard = ({ data }) => {
 
   return (
     <>
@@ -10,10 +12,14 @@ const Customerreviewcard = ({data}) => {
         <div className="card-images-text-btns-customer">
           <div className="customer-id">
             <div className="id-photo-address">
-              <img src={userimg} alt="userimg" />
+              <img style={{
+                width: "40px",
+                borderRadius: "50%",
+                height: "40px"
+              }} src={manish} alt="userimg" />
               <div className='customer-card-review-user-name-info' >
-                <p className='common-16-4' >{data?.name}</p>
-                <p className='common-16-2' >{data?.date}</p>
+                <p className='common-16-4' >{data?.user.name}</p>
+                <p className='common-16-2' >{data?.createdAt}</p>
               </div>
             </div>
             <div className="products-ratting">

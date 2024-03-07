@@ -1,4 +1,4 @@
-import { Fragment, useRef } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import next from '../img/ArrowBackFilled (1).png'
 import previces from '../img/ArrowBackFilled.png'
@@ -7,54 +7,26 @@ import dil from '../img/dil.png'
 import ratting from '../img/Rating.png'
 import cartimage from '../img/addtocart.png'
 import Card1 from '../cardtypes/card1';
+import * as api from '../axios/apis'
+import { Link } from 'react-router-dom';
 
 const Top_brands = () => {
     const swiperRef = useRef();
-    const topbrand = [
-        {
-            heading: "  boAt Wave Lite Smartwa. boAt Wave Lite Smartwa.I Phone Apple ",
-            price: "$ 300.00",
-            imgs: "product16.png"
-        },
-        {
-            heading: "boAt Airdopes 2v1.0 Tr..",
-            price: "$ 253.00",
-            imgs: "product15.png"
-        },
-        {
-            heading: "TWS Earbuds with Mic",
-            price: "$ 320.00",
-            imgs: "product14.png"
-        },
-        {
-            heading: "boAt Wave Lite Smartwa.. ",
-            price: "$ 400.00",
-            imgs: "product13.png"
-        }, {
-            heading: " boAt Wave Lite Smartwa.. ",
-            price: "$ 300.00",
-            imgs: "product12.png"
-        },
-        {
-            heading: "boAt Wave Lite Smartwa..",
-            price: "$ 253.00",
-            imgs: "product11.png"
-        },
-        {
-            heading: "boAt Wave Lite Smartwa..",
-            price: "$ 320.00",
-            imgs: "product10.png"
-        },
-        {
-            heading: "boAt Wave Lite Smartwa.. ",
-            price: "$ 400.00",
-            imgs: "product9.png"
-        }
-    ]
-    // const [heart, setheart] = useState(false)
-    // let redheart = (e) => {
-    //     setheart(!heart)
-    // }
+
+    const [topBrand, settopBrand] = useState([])
+
+    const getProducts = async () => {
+        let productsdata = await api.getdata().then((res) => { return res.data }).catch((err) => console.error(err, "erorr"))
+        let topbrandsdata = productsdata?.data?.filter((item) => {
+            return item.topbrands === true
+        })
+        settopBrand(topbrandsdata)
+    }
+
+    useEffect(() => {
+        getProducts()
+    }, [])
+
     return (
         <>
             <div className="topbrand container">
@@ -77,31 +49,15 @@ const Top_brands = () => {
                         onBeforeInit={(swiper) => {
                             swiperRef.current = swiper;
                         }}
-                    // breakpoints={{
-                    //     200:{
-                    //       slidesPerView: 1,
-                    //       spaceBetween: 10
-                    //     },
-                    //     500: {
-                    //       slidesPerView: 2,
-                    //       spaceBetween: 10
-                    //     },
-                    //     768: {
-                    //       slidesPerView: 3,
-                    //       spaceBetween: 10
-                    //     },
-                    //     1024:{
-                    //       slidesPerView: 4,
-                    //       spaceBetween: 10
-                    //     }
-                    //   }}
                     >
                         {
-                            topbrand.map((item, index) => {
+                            topBrand.map((item, index) => {
                                 return (
                                     < Fragment key={Date.now() + index}>
-                                        <SwiperSlide className='products-slider realted_seiperslide '  >
-                                            <Card1 data={item} />
+                                        <SwiperSlide className='products-slider realted_seiperslide'>
+                                            <Link to={`cart/${item.id}`} >
+                                                <Card1 data={item} />
+                                            </Link>
                                         </SwiperSlide>
                                     </ Fragment>
                                 )

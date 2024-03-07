@@ -10,12 +10,12 @@ const Card2 = ({ data }) => {
     <>
       <div className='top-card-1 card2'>
         <div className="top-card-images">
-          <img src={require(`../img/${data.img}`)} alt='top_image' />
+          <img src={`http://localhost:8000/${data.image}`} alt='top_image' />
         </div>
         <div className="top-card-text">
           <p className='common-20-1' >{data.price}</p>
           <img src={img1} alt="" />
-          <h2 className='common-24-1' >{data.textH2}</h2>
+          <h2 className='common-24-1' >{data.name}</h2>
           <button className='  simple-btn-buy-now' > BUY <img src={img2} alt="btn-buy" /> </button>
           <button className='with-out-respons' >Buy <img src={arrowlinerright} alt="er" /> </button>
         </div>

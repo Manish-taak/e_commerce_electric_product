@@ -11,6 +11,7 @@ import SectionHeading from '../snippets/sectionHeading'
 import right from '../componets/img/Arrowlineright.png'
 import loacker from '../componets/img/loacker.png'
 import sunil from '../componets/img/sunil.jpeg'
+import { Link } from 'react-router-dom'
 
 // import 
 
@@ -20,7 +21,9 @@ const Myaccount = () => {
         <div className=" container  myaccount">
             <SectionHeading head={"My account"} link1={"Home"} link2={"My accounts"} />
             <div className="account-all-card">
-                <Usercard useracc={true} arrow={right} img={sunil} name={"Tiana Baptista"} delaits={"tim.jennings@example.com"} />
+                <Link to="/profile" >
+                    <Usercard useracc={true} arrow={right} img={sunil} name={"Tiana Baptista"} delaits={"tim.jennings@example.com"} />
+                </Link>
                 <Usercard useracc={true} arrow={right} img={order} name={"My orders"} delaits={"Lorem ipsum dolor sit amet, consectetur .."} />
                 <Usercard useracc={true} arrow={right} img={payment} name={"Payment"} delaits={"Lorem ipsum dolor sit amet, consectetur .."} />
                 <Usercard useracc={true} arrow={right} img={chats} name={"Chats"} delaits={"Lorem ipsum dolor sit amet, consectetur .."} />

@@ -1,23 +1,12 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 
 import cartimg from '../img/Badge W.Icon.png'
-import img1 from '../img/Rectangle 910.png'
 import { Link } from 'react-router-dom'
 
-const Cartdrop = () => {
+const Cartdrop = (props) => {
 
-    const cartdataselect = [
-        {
-            id: "1",
-            name: "Asian prime-02 walking shoes",
-            price: "$320.00"
-        },
-        {
-            id: "2",
-            name: "Asian prime-02 walking shoes",
-            price: "$320.00"
-        }
-    ]
+
+
 
     return (
         <>
@@ -29,14 +18,15 @@ const Cartdrop = () => {
                     <div className="cartdropdown">
                         <div className="carttop">
                             {
-                                cartdataselect.map((item,index) => {
+                                props.data?.data?.map((item, index) => {
+                                    console.log(item, "=========================drop cart item")
                                     return (
                                         <Fragment key={Date.now() + index} >
                                             <div className="cart-box-select">
-                                                <img src={img1} alt="img1" />
+                                                <img src={`http://localhost:8000/${item?.product?.image}`} alt="img1" />
                                                 <div className="info-price-cart">
-                                                    <p className='common-16-3' >{item.name}</p>
-                                                    <p className='common-14-2 ' >{item.price}</p>
+                                                    <p className='common-16-3' >{item?.product?.name}</p>
+                                                    <p className='common-14-2 ' >{item?.product?.price}</p>
                                                 </div>
                                             </div>
                                         </Fragment>

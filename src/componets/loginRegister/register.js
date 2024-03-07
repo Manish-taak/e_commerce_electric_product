@@ -62,10 +62,8 @@ const Register = () => {
     delete data['comfirmpassword'];
     // on click per api heat transfer ==================================================================
     let res = await api.register(data).then(res => {
-      // console.log(res.data.message, ' --- success')
       window.alert(res.data.message)
     }).catch(error => {
-      console.log(error.data, ' --- error')
       window.alert(error.response.data.message)
     })
   }

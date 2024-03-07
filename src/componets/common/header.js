@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import logoimg2 from '../img/Buynow.png'
 import logoimg5 from '../img/Group.png'
 import logoimg1 from '../img/Icon.png'
@@ -19,11 +19,36 @@ import Homedrop from '../headerdropdown/homedrop'
 import logoheader from '../img/Logo-main-header.svg'
 import Sidebar from '../headerdropdown/sidebar'
 import Searchbar from '../searchbar/searchbar'
+import Usercontext from '../popupscontaxt/usercontext'
+import * as api from "../axios/apis"
 const Header = () => {
+    let { tokenuser, settokenuser } = useContext(Usercontext)
     const [dropdown, setdropdown] = useState(false)
     const [country, setcountry] = useState(false)
     const [sidebar, setsidebar] = useState(false)
     const [search, setsearch] = useState(false)
+
+    useEffect(() => {
+        let gettoken = sessionStorage.getItem("token")
+        settokenuser(gettoken)
+    })
+
+
+
+
+    const [cartdata, setcartdata] = useState([])
+
+    let getcartallitem = async () => {
+      let data = await api.mulitipalscartitem().then((res) => {
+        return res.data
+      }).catch((err) => console.log(err, "=====+=+++++++mulitipals cart item axios error"))
+      setcartdata(data)
+    }
+  
+    useEffect(() => {
+      getcartallitem()
+    }, [])
+  
     return (
         <>
             <section className='head' >
@@ -95,7 +120,7 @@ const Header = () => {
                                     <Countraydrop country={country} />
                                     <div className='border-only' ></div>
                                     <div>
-                                        <Cartdrop />
+                                        <Cartdrop  data={cartdata} />
                                     </div>
                                     <div className='border-only' ></div>
                                     <div>

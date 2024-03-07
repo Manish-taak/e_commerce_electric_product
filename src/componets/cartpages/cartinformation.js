@@ -1,30 +1,29 @@
 import React from 'react'
-const Cartinformation = () => {
+const Cartinformation = (props) => {
   const completeoneproductdata = [
     {
       heading: "brand",
-      info: "Apple",
-      infoImg: "image 27.png"
+
     },
     {
       heading: "Color",
-      info: "Yellow",
+
     },
     {
       heading: "Special feature",
-      info: "Email, GPS, Notifications",
+
     },
     {
       heading: "Item weight",
-      info: "30 Grams",
+
     },
     {
       heading: "Compatible Devices",
-      info: "Smartphone",
+
     },
     {
       heading: "Style",
-      info: "GPS + Cellular",
+
     }
   ]
   return (
@@ -34,17 +33,63 @@ const Cartinformation = () => {
           Product Information
         </h2>
         <div >
-          <ul className="products-info" >
-            {
-              completeoneproductdata.map((item, index) => {
+          {
+            props?.data?.data[0].productsinfo.map((item, index) => {
+              return (<>
+                <ul className="products-info" >
+                  <li className='products-info-list'>
+                    <p className='common-16-4' >{item.heading}</p>
+                    <div className="products-image-name">
+                      {
+                        item?.image &&
+                        <img src={`http://localhost:8000/${item.image}`} alt="apple" />
+                      }
+                      <p className='common-16-2' >{item.info}</p>
+                    </div>
+                  </li>
+                </ul>
+              </>)
+            })
+          }
+
+
+
+          {/* {
+              props?.data?.data[0].productsinfo.map((item, index) => {
+                return (<>
+                  <li className='products-info-list'>
+                    {
+                      completeoneproductdata.map((item, index) => {
+                        return (<>
+                          <p className='common-16-4' >{item.heading}</p>
+                        </>)
+                      })
+                    }
+                    <div className="products-image-name">
+                      {
+                        item?.image &&
+                        <img src={`http://localhost:8000/${item.image}`} alt="apple" />
+                      }
+                      <p className='common-16-2' >pppppppppppp</p>
+                    </div>
+                  </li>
+                </>)
+              })
+            } */}
+
+          {/* {
+              props?.data?.data[0].productsinfo.map((item, index) => {
+                console.log(item, "============itemitemitemitemitemitemitemitemitem======================")
+
+
                 return (
                   <React.Fragment key={Date.now() + index} >
                     <li className='products-info-list'>
                       <p className='common-16-4' >{item.heading}</p>
                       <div className="products-image-name">
                         {
-                          item?.infoImg &&
-                          <img src={require(`../img/${item?.infoImg}`)} alt="apple" />
+                          item?.image &&
+                          <img src={`http://localhost:8000/${item.image}`} alt="apple" />
                         }
                         <p className='common-16-2' >{item.info}</p>
                       </div>
@@ -52,8 +97,7 @@ const Cartinformation = () => {
                   </React.Fragment>
                 )
               })
-            }
-          </ul>
+            } */}
         </div>
       </div>
     </>

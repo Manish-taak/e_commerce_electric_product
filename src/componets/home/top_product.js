@@ -1,12 +1,58 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import top4 from '../img/top4.png'
 // import ratting from '../img/Rating.png'
 // import rightarrow from '../img/Arrowlineright.png'
 // import top_product_json from '../json/top_product.json'
 import Card2 from '../cardtypes/card2'
+import * as api from "../axios/apis"
+import { Link } from 'react-router-dom'
 
 const Top_product = (props) => {
+
+
+    const [topProduct, settopProduct] = useState([])
+
+    const productsdata = async () => {
+        let getProducts = await api.getdata().then((res) => {
+            return res.data
+        }).catch((err) => console.log(err))
+        let filtertopproducts = getProducts?.data.filter((item) => {
+            return item.sellingproducts === true
+        })
+        settopProduct(filtertopproducts)
+    }
+
+
+    useEffect(() => {
+        productsdata()
+    }, [])
+
     const testData = [
+        {
+            img: "Rectangle 770.png",
+            textH2: "Bluetooth watchs",
+            star: "Rating.png",
+            price: "$ 150.00"
+        },
+        {
+            img: "Rectangle 770.png",
+            textH2: "Bluetooth watchs",
+            star: "Rating.png",
+            price: "$ 150.00"
+        },
+        {
+            img: "Rectangle 770.png",
+            textH2: "Bluetooth watchs",
+            star: "Rating.png",
+            price: "$ 150.00"
+        },
+        {
+            img: "Rectangle 770.png",
+            textH2: "Bluetooth watchs",
+            star: "Rating.png",
+            price: "$ 150.00"
+        }
+        ,
         {
             img: "Rectangle 770.png",
             textH2: "Bluetooth watchs",
@@ -26,6 +72,8 @@ const Top_product = (props) => {
             price: "$ 150.00"
         }
     ]
+
+
     return (
         <>
             <div className="top_product container  ">
@@ -36,10 +84,12 @@ const Top_product = (props) => {
                 </div>
                 <div className="top-product-cards">
                     {
-                        testData?.map((item, index) => {
+                        topProduct?.map((item, index) => {
                             return (
                                 <Fragment key={Date.now() + index} >
-                                    <Card2 data={item} />
+                                    <Link to={`cart/${item.id}`} >
+                                        <Card2 data={item} />
+                                    </Link>
                                 </Fragment>
                             )
                         })

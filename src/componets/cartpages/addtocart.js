@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 // import right from '../img/Arrowlineright.png'
 // import addtocartimage from '../img/adddtocart2.png'
@@ -8,46 +8,75 @@ import { Link } from 'react-router-dom'
 import Cardaddtocart from '../cardtypes/cardaddtocart'
 import SectionHeading from '../../snippets/sectionHeading'
 import debitcard from '../img/debitcard.svg'
+import * as api from "../axios/apis"
+import Empty from "../img/emptycart.png"
 const Addtocart = () => {
   // color btn change 
   const [color, setcolor] = useState(true)
 
-  const cartdata = [
-    {
-      id: "1",
-      brandname: " Apple Watch SE ",
-      brandinfo: "Silver Aluminium Case with Abyss Blue Sport Band - Regular",
-      size: "41mm",
-      style: "GPS",
-      color: "yellow",
-      shipping: "Free shipping",
-      price: "$320.00",
-      img: "watchs.png"
-    }, {
-      id: "2",
-      brandname: " Apple Watch SE ",
-      brandinfo: "Silver Aluminium Case with Abyss Blue Sport Band - Regular",
-      size: "41mm",
-      style: "GPS",
-      color: "yellow",
-      shipping: "Free shipping",
-      price: "$320.00",
-      img: "mi.png"
-    }
-  ]
+  // const cartdata = [
+  //   {
+  //     id: "1",
+  //     brandname: " Apple Watch SE ",
+  //     brandinfo: "Silver Aluminium Case with Abyss Blue Sport Band - Regular",
+  //     size: "41mm",
+  //     style: "GPS",
+  //     color: "yellow",
+  //     shipping: "Free shipping",
+  //     price: "$320.00",
+  //     img: "watchs.png"
+  //   }, {
+  //     id: "2",
+  //     brandname: " Apple Watch SE ",
+  //     brandinfo: "Silver Aluminium Case with Abyss Blue Sport Band - Regular",
+  //     size: "41mm",
+  //     style: "GPS",
+  //     color: "yellow",
+  //     shipping: "Free shipping",
+  //     price: "$320.00",
+  //     img: "mi.png"
+  //   }
+  // ]
+
+  const [cartdata, setcartdata] = useState([])
+
+  let getcartallitem = async () => {
+    let data = await api.mulitipalscartitem().then((res) => {
+      return res.data
+    }).catch((err) => console.log(err, "=====+=+++++++mulitipals cart item axios error"))
+    setcartdata(data)
+  }
+
+  useEffect(() => {
+    getcartallitem()
+  }, [])
+
+
+
+  function handleScroll() {
+    window.scroll({
+      bottom: document.body.offsetHeight,
+      behavior: 'smooth',
+      top : 0
+    });
+  }
+
+  
+
+
+
   return (
     <>
       <div className=" container addtocart">
         <SectionHeading head={"Cart Products"} link1={"Home"} link2={"Cart"} />
         {
-          cartdata.map((item,index) => {
+          cartdata?.data?.map((item, index) => {
             return (
-              <React.Fragment key={Date.now() + index} >
+              <React.Fragment key={Date.now() + index}  >
                 <Cardaddtocart data={item} cartcard={true} />
               </React.Fragment>
             )
           })
-
         }
         <div className="line-x"></div>
         <div className="card-option">
@@ -96,6 +125,7 @@ const Addtocart = () => {
               <Link className='btn-check-out' style={{ color: "#FFF" }} to="/Checkoutmain/userlogin" >
                 <button style={{ cursor: "pointer" }} className=' btn-check-out btn-common-main'> Check out </button>
               </Link>
+              <button onClick={handleScroll} >btn </button>
             </div>
           </div>
         </div>
@@ -105,3 +135,13 @@ const Addtocart = () => {
 }
 
 export default Addtocart
+
+
+//   <div className='emptycard' >
+// <h1>You Can Add Your Content Here </h1>
+// <Link to="/products" >
+//   <button className='btn-check-out' >
+//     shop now
+//   </button>
+// </Link>
+// </div>

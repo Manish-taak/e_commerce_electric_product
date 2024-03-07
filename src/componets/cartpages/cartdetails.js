@@ -1,23 +1,117 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react'
 // import right from '../img/Arrowlineright.png'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import Swipercodecart from '../cardtypes/swipercodecart'
 import shareicon from '../img/shareicon.svg'
 import star from '../img/StarFilled.png'
 import SectionHeading from '../../snippets/sectionHeading.js'
+import { useForm } from "react-hook-form"
+import * as api from "../axios/apis.js"
+import Usercontext from '../popupscontaxt/usercontext.js'
+
+// toster import propertiessss
+import { Bounce, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Cartdetails = (props) => {
-
-  const [checkcolor, setcheckcolor] = useState("");
-
+  const [checkcolor, setcheckcolor] = useState();
   const [price, setPrice] = useState(props?.data?.data[0].price);
-
-  useEffect(() => {
-    if (props?.data?.data[0]?.colors !== undefined) {
-      let color = JSON.parse(props?.data?.data[0]?.colors)[0];
-      setcheckcolor(color?.color_code);
+  const [sizedata, setsize] = useState([]);
+  const [selectedsize, setselectedsize] = useState()
+  const [sendsizedata, setsendsizedata] = useState()
+  const [hover, sethover] = useState('')
+  const [selectedValue, setSelectedValue] = useState('');
+  const { tokenuser, settokenuser } = useContext(Usercontext)
+  console.log(tokenuser, "=======================")
+  function hovereffact(e, size) {
+    sethover(e)
+    setselectedsize(size)
+  }
+  const handleRadioChange = (event) => {
+    setSelectedValue(event.target.value);
+  };
+  function size() {
+    setSelectedValue()
+  }
+  const senddata = async () => {
+    const raw = {};
+    raw.style = selectedValue
+    raw.color = checkcolor;
+    raw.productId = props?.data?.data[0].id
+    raw.size = selectedsize
+    raw.quantity = 1
+    if (raw.sendsizedata === '') {
+      return window.alert("select size")
     }
+    if (raw.style === '') {
+      return window.alert("select style")
+    }
+    if (tokenuser !== null) {
+      let res = await api.cartpostdata(raw, tokenuser).then((res) => { return res }).catch(err => console.log(err, "===============api error cart details page "))
+      if (res.status === undefined || res.status === null || res.status === 500) {
+        return console.log("backend responce error undefined null status 500")
+      }
+      if (res.status === 200) {
+        toast.success(`${res.data.message}`)
+      }
+      // if (res.status === 200) {
+      //   Navigate('/addtocart')
+      // }
+    } else {
+      let array = JSON.parse(localStorage.getItem("datacart")) ?? [];
+      console.log(array, "==================get data");
+      if (array.length > 0) {
+        let existingItemIndex = array.findIndex((item) => {
+          return (
+            item.style === selectedValue &&
+            item.color === checkcolor &&
+            item.size === selectedsize
+          );
+        });
 
-  }, [props.data])
+        if (existingItemIndex !== -1) {
+          array[existingItemIndex].quantity += 1;
+        } else {
+          array.push({
+            style: selectedValue,
+            color: checkcolor,
+            size: selectedsize,
+            quantity: 1,
+          });
+        }
+      } else {
+        array.push({
+          style: selectedValue,
+          color: checkcolor,
+          size: selectedsize,
+          quantity: 1,
+        });
+      }
+      localStorage.setItem("datacart", JSON.stringify(array));
+    }
+  }
+  useEffect(() => {
+    try {
+      if (props?.data?.data[0]?.colors !== undefined) {
+        let color = JSON.parse(props.data.data[0].colors);
+        setcheckcolor(color[0].color_code);
+      }
+    } catch (error) {
+      console.log(error, "=== pagecartdetails=====colors======error")
+    }
+    try {
+      if (props?.data?.data[0]?.sizeproducts !== undefined) {
+        let stringdatasize = JSON.parse(props?.data?.data[0].sizeproducts[0].size)
+        setsize(stringdatasize)
+        setselectedsize(stringdatasize[0].size)
+      }
+    } catch (error) {
+      console.log(error, "=====pagecartdetails=========size")
+    }
+    size()
+  }, [props.data]);
+
+
+
 
   return (
     <>
@@ -32,23 +126,20 @@ const Cartdetails = (props) => {
                 <div className="products-swiper-other-type">
                   <div className="res-products-change-section">
                     <div className="product-name">
-                      <p className='product-price-and-name common-24-1 ' >{item.description}
+                      <p className='product-price-and-name common-24-1 ' >{item?.description}
                         <img src={shareicon} alt="shareicon" />
                       </p>
-                      <p className='common-16-2'> <span className='common-16-4' >Price: $ {price}</span>{item.description}</p>
+                      <p className='common-16-2'> <span className='common-16-4' >Price: $ {price}</span>{item?.description}</p>
                     </div>
                   </div>
                   <Swipercodecart product={props.data?.data[0]} checkcolor={checkcolor} setPrice={setPrice} />
-                  {
-                    console.log(props.data?.data[0], "_________________________")
-                  }
                   <div className="products-details-type">
                     <div className="products-change-section">
                       <div className="product-name">
-                        <p className='product-price-and-name common-24-1 ' >{item.name}
+                        <p className='product-price-and-name common-24-1 ' >{item?.name}
                           <img src={shareicon} alt="shareicon" />
                         </p>
-                        <p className='common-16-2'> <span className='common-16-4' >Price: ${price}</span>  -{item.description}</p>
+                        <p className='common-16-2'> <span className='common-16-4' >Price: $ {price}</span>  -{item.description}</p>
                       </div>
                     </div>
                     <div className="product-color">
@@ -70,26 +161,49 @@ const Cartdetails = (props) => {
                     <div className="product-size">
                       <p className='common-16-2' >Size</p>
                       <div className='size-mm' >
-                        <div className="size-1">
-                          <p className='common-20-1' >41mm</p>
-                          <p className='common-14-2 ellipsis '>Fits 130-200mm wrists.</p>
-                        </div>
-                        <div className="size-1">
-                          <p className='common-20-1' >41mm</p>
-                          <p className='common-14-2 ellipsis '>Fits 130-200mm wrists.</p>
-                        </div>
+                        {
+                          sizedata?.map((item, index) => {
+                            return (
+                              <Fragment key={item.size}>
+                                <div style={{
+                                  cursor: "pointer",
+                                  backgroundColor: hover === index ? "#f8fafc" : "transparent"
+                                }} className="size-1" onClick={() => { hovereffact(index, item.size) }}   >
+                                  <p className='common-20-1' > {item.size}mm</p>
+                                  <p className='common-14-2 ellipsis '> static data Fits 130-200mm wrists.</p>
+                                </div>
+                              </Fragment>
+                            )
+                          })
+                        }
                       </div>
                     </div>
                     <div className="product-style">
                       <p className='common-16-2' >Style name</p>
                       <div >
-                        <form className=" slectsradio-gps " action="">
+                        <form className="slectsradio-gps" action="">
                           <div>
-                            <input name='gps' className='gps-radio' id='gps' type="radio" />
+                            <input
+                              name='gps'
+                              className='gps-radio'
+                              id='gps'
+                              type="radio"
+                              value='GPS'
+                              checked={selectedValue === 'GPS'}
+                              onChange={handleRadioChange}
+                            />
                             <label className='common-16-1' l htmlFor="gps">GPS</label>
                           </div>
                           <div>
-                            <input name='gps' className='gps-radio' id='Cellular' type="radio" />
+                            <input
+                              name='gps'
+                              className='gps-radio'
+                              id='Cellular'
+                              type="radio"
+                              value='GPS + Cellular'
+                              checked={selectedValue === 'GPS + Cellular'}
+                              onChange={handleRadioChange}
+                            />
                             <label className='common-16-1' htmlFor="Cellular">GPS + Cellular</label>
                           </div>
                         </form>
@@ -117,7 +231,7 @@ const Cartdetails = (props) => {
                       </div>
                     </div>
                     <div className="product-btns">
-                      <Link className='cart-add-buy' to="/addtocart" >
+                      <Link onClick={() => senddata()} className='cart-add-buy'>
                         <button className='btn-customer-2 cart-btn btn-customer'>ADD TO CART </button>
                       </Link>
                       <Link className='cart-add-buy' to="/products" >
@@ -126,15 +240,68 @@ const Cartdetails = (props) => {
                     </div>
                   </div>
                 </div>
-
               </Fragment>
             )
           })
         }
-
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
     </>
   )
 }
 
 export default Cartdetails
+
+
+
+
+
+
+// You've changed 'Nescafe Classic CoffeePowder, 100% Pure Instant Coffee' QUANTITY to '3'
+
+
+// <ToastContainer
+// position="top-center"
+// autoClose={false}
+// newestOnTop={false}
+// closeOnClick={false}
+// rtl={false}
+// pauseOnFocusLoss
+// draggable={false}
+// theme="dark"
+// transition: Bounce,
+// />
+// title
+
+/*
+toast.success('Wow so easy!', {
+position: "top-center",
+autoClose: false,
+hideProgressBar: false,
+closeOnClick: false,
+pauseOnHover: false,
+draggable: false,
+progress: undefined,
+theme: "dark",
+transition: Bounce,
+});
+
+*/
+
+
+/*
+
+
+*/

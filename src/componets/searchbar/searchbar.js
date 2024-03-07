@@ -200,7 +200,7 @@ const Searchbar = (props) => {
                             <div className="recents-search">
                                 <ul className='list-search' >
                                     {
-                                        maimsearchbar.map((item,index) => {
+                                        maimsearchbar.map((item, index) => {
                                             return (
                                                 <Fragment key={Date.now() + index} >
                                                     <li className=' searchbar-header  hotofferli  dropdowncategory' >{item.name}

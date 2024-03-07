@@ -18,7 +18,7 @@ const Banner = () => {
           <div className='banner-pruches common-p-20'>
             <p id='manish' className='common-20-1' >For first pruches </p>
             <img className='fire-img' src={fire} alt="eroro" />
-            <span className='  color-yellow-text' >get 30% off</span>
+            <span className='  color-yellow-text' id='section1' >get 30% off</span>
           </div>
             <div className='banner-btn'>
               <Link to="/products" >

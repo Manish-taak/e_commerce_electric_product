@@ -2,7 +2,8 @@ import React, { Fragment } from 'react'
 import downarrayimage from '../img/downarrayimage.png'
 
 
-const Cartquestionanswer = () => {
+const Cartquestionanswer = (props) => {
+  console.log(props?.data?.data[0].Faq[5].q, "==================props data question answers")
   const cartanswer = [
     {
       id: "1",
@@ -46,19 +47,19 @@ const Cartquestionanswer = () => {
       <div className=" container Cartquestionanswer">
         <p className='common-20-1'  >FAQ.</p>
         {
-          cartanswer.map((item, index) => {
+          props?.data?.data[0].Faq.map((item, index) => {
             return (
-              <Fragment key={Date.now()+index} >
+              <Fragment key={Date.now() + index} >
                 <div className="help-part-3-child-1">
                   <div onClick={(e) => {
                     sidebarAccordion(e)
                     rotate(e);
                   }} className="text-btn-help ">
-                    <p className='common-16-3' style={{ padding: '16px 0' }} >{item.question}</p>
+                    <p className='common-16-3' style={{ padding: '16px 0' }} >{item?.question}</p>
                     <img className='arrow-down' src={downarrayimage} alt="downarrayimage" />
                   </div>
                   <p className='common-16-2 ans'  >
-                    {item.answer}
+                    {item?.answer}
                   </p>
                 </div>
               </Fragment>

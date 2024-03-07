@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import eyes from '../img/blueEyes.svg';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import * as api from '../axios/apis';
+import Usercontext from '../popupscontaxt/usercontext';
+
 
 // validation email   ================================================================================
 const validateEmail = (email) => {
@@ -30,15 +32,17 @@ const schema = yup.object({
   password: yup.string().required('Password is required'),
 })
 
+
+// start login function 
 export const Login = () => {
-
-
+  const [token1, settoken1] = useState()
+  // const [usercheck, setusercheck] = useState(false)
+  const { tokenuser, settokenuser } = useContext(Usercontext)
+  console.log(tokenuser, "===================tokenuser")
 
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema),
   });
-
-
 
   const onSubmit = async (data) => {
     //  email methode emailRegex========================================================================
@@ -55,17 +59,32 @@ export const Login = () => {
     delete data['email_or_phone'];
     //================================================================================================api 
     let res = await api.login(data).then((res) => {
-      console.log(res.data.message, "=======================datadatadatadatadatadatadata=========");
       window.alert(res.data.message)
+      sessionStorage.setItem("token", res.data.token)
     })
       .catch((error) => {
         window.alert(error.response.data.message)
       })
-  };
+  }
+
   const [password, setPassword] = useState(false);
   const showHide = () => {
     setPassword((per) => !per);
   };
+
+  // log out 
+  // Remove saved data from sessionStorage
+  function userlogout() {
+    sessionStorage.removeItem("token");
+    // setusercheck(false)
+  }
+
+  useEffect(() => {
+    let gettoken = sessionStorage.getItem("token")
+    settokenuser(gettoken)
+  })
+
+
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)} action="">
@@ -119,6 +138,15 @@ export const Login = () => {
           </button>
         </div>
       </form>
+
+
+      {/* log out btn */}
+      <button onClick={() => userlogout()} style={{ width: '97px' }} className="btn-common-main">
+        Log out
+      </button>
     </>
   );
 };
+
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hbmlzaEBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjAwMDExMDAwIiwicGhvbmVudW1iZXIiOiIiLCJpYXQiOjE3MDkwMTA1MzMsImV4cCI6MTc0MDU0NjUzM30._oIm6AGijdVt82f9pqpFKv5HCTlTHR8mD_WG2aze31A
+//  ======================token

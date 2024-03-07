@@ -3,7 +3,7 @@ import dil from '../img/dil.png'
 import ratting from '../img/Rating.png'
 import cartimage from '../img/addtocart.png'
 
-const Card1 = ({data}) => {
+const Card1 = ({ data }) => {
     return (
         <>
             <div className='card-1-brands'>
@@ -12,7 +12,7 @@ const Card1 = ({data}) => {
                         <button className='new-products' >New</button>
                         <img src={dil} alt="dil" />
                     </div>
-                    <img className='top-brands-card-images' src={require(`../img/${data.imgs}`)} alt="brand_product_img" />
+                    <img className='top-brands-card-images' src={`http://localhost:8000/${data.image}`} alt="brand_product_img" />
                 </div>
                 <div className="text-brand-swiper">
                     {/* <div className='common-16-2 overflow-text ' style={{ paddingLeft: "20px", WebkitLineClamp: "1", paddingRight: "20px" }} >
@@ -22,8 +22,8 @@ const Card1 = ({data}) => {
 
                     <div className="brand-price">
                         <div className="brand-product-name">
-                            <div className='brand-name' >
-                                <p className='common-20-1' >I Phone Apple</p>
+                            <div className='brand-name'>
+                                <p className='common-20-1' >{data.name}</p>
                                 <img src={ratting} alt="ratting" />
                             </div>
                             <p className='common-24-1'>{data.price}</p>

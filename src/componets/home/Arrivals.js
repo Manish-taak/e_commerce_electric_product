@@ -1,4 +1,4 @@
-import { Fragment, useRef } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import next from '../img/ArrowBackFilled (1).png'
 import previces from '../img/ArrowBackFilled.png'
@@ -8,49 +8,25 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 // import required modules
 import Card1 from '../cardtypes/card1';
+import * as api from '../axios/apis'
+import { Link } from 'react-router-dom';
 const Arrivals = () => {
     const swiperRef = useRef();
-    const topbrand = [
-        {
-            heading: "  boAt Wave Lite Smartwa. boAt Wave Lite Smartwa.I Phone Apple ",
-            price: "$ 300.00",
-            imgs: "product3.png"
-        },
-        {
-            heading: "boAt Airdopes 2v1.0 Tr..",
-            price: "$ 253.00",
-            imgs: "product9.png"
-        },
-        {
-            heading: "TWS Earbuds with Mic",
-            price: "$ 320.00",
-            imgs: "product13.png"
-        },
-        {
-            heading: "boAt Wave Lite Smartwa.. ",
-            price: "$ 400.00",
-            imgs: "product8.png"
-        }, {
-            heading: " boAt Wave Lite Smartwa.. ",
-            price: "$ 300.00",
-            imgs: "product1.png"
-        },
-        {
-            heading: "boAt Wave Lite Smartwa..",
-            price: "$ 253.00",
-            imgs: "product14.png"
-        },
-        {
-            heading: "boAt Wave Lite Smartwa..",
-            price: "$ 320.00",
-            imgs: "product4.png"
-        },
-        {
-            heading: "boAt Wave Lite Smartwa.. ",
-            price: "$ 400.00",
-            imgs: "product2.png"
-        }
-    ]
+
+    const [ArrivalsProducts, setArrivalsProducts] = useState([])
+
+    const getProducts = async () => {
+        let productsdata = await api.getdata().then((res) => { return res.data }).catch((err) => console.error(err, "erorr"))
+        let topbrandsdata = productsdata?.data?.filter((item) => {
+            return item.ArrivalsProducts === true
+        })
+        setArrivalsProducts(topbrandsdata)
+    }
+
+    useEffect(() => {
+        getProducts()
+    }, [])
+
     return (
         <Fragment>
             <div className="topbrand container">
@@ -73,46 +49,15 @@ const Arrivals = () => {
                             swiperRef.current = swiper;
                         }}
                         loop={true}
-                    // breakpoints={{
-                    //     200: {
-                    //         slidesPerView: 1,
-                    //         spaceBetween: 10
-                    //     },
-                    //     500: {
-                    //         slidesPerView: 2,
-                    //         spaceBetween: 10
-                    //     },
-                    //     768: {
-                    //         slidesPerView: 3,
-                    //         spaceBetween: 10
-                    //     },
-                    //     1024: {
-                    //         slidesPerView: 4,
-                    //         spaceBetween: 10
-                    //     }
-                    // }}
                     >
-                        {/* {
-                            topbrand.map((item, value) => {
-                                return (
-                                    <Fragment key={value} >
-                                        <SwiperSlide className='brand_seiperslide'  >
-                                            <Card1 data={item} />
-                                            <div className='dil-brand'>
-                                                <button className='new-products' >New</button>
-                                                <img src={dil} alt="dil-brand" />
-                                            </div>
-                                        </SwiperSlide>
-                                    </Fragment >
-                                )
-                            })
-                        } */}
                         {
-                            topbrand.map((item, index) => {
+                            ArrivalsProducts.map((item, index) => {
                                 return (
                                     < Fragment key={Date.now() + index}>
                                         <SwiperSlide className='products-slider realted_seiperslide'  >
-                                            <Card1 data={item} />
+                                            <Link to={`/cart/${item.id}`}>
+                                                <Card1 data={item} />
+                                            </Link>
                                         </SwiperSlide>
                                     </ Fragment>
                                 )

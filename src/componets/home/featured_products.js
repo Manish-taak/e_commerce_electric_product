@@ -19,51 +19,53 @@ import * as api from "../axios/apis"
 const Featured_products = (props) => {
   const swiperRef = useRef();
   const [heart, setheart] = useState(false)
+  const [allproducts, setallproducts] = useState([])
+  const [filter, setfilter] = useState()
   let redheart = (e) => {
     setheart(!heart)
   }
-  // card one
-  const featuredcarddata = [
-    {
-      heading: "Boult Audio Bass D3 Buds Lightweight Stereo ",
-      price: "$ 300.00",
-      imgs: "product1.png"
-    },
-    {
-      heading: "Bluetooth Wireless Ear Head phones (35Hrs Playtime)",
-      price: "$ 253.00",
-      imgs: "product2.png"
-    },
-    {
-      heading: "Apple iPhone 13 Pro Max (128GB)",
-      price: "$ 320.00",
-      imgs: "product4.png"
-    },
-    {
-      heading: "Hp 15S AMD Ryzen 3- 5300U 15.6 Inches ",
-      price: "$ 400.00",
-      imgs: "product5.png"
-    }, {
-      heading: "Boult Audio Bass D3 Buds Lightweight Stereo ",
-      price: "$ 300.00",
-      imgs: "product5.png"
-    },
-    {
-      heading: "Bluetooth Wireless Ear Head phones (35Hrs Playtime)",
-      price: "$ 253.00",
-      imgs: "product6.png"
-    },
-    {
-      heading: "Apple iPhone 13 Pro Max (128GB)",
-      price: "$ 320.00",
-      imgs: "product7.png"
-    },
-    {
-      heading: "Hp 15S AMD Ryzen 3- 5300U 15.6 Inches ",
-      price: "$ 400.00",
-      imgs: "product8.png"
-    }
-  ]
+  // // card one
+  // const featuredcarddata = [
+  //   {
+  //     heading: "Boult Audio Bass D3 Buds Lightweight Stereo ",
+  //     price: "$ 300.00",
+  //     imgs: "product1.png"
+  //   },
+  //   {
+  //     heading: "Bluetooth Wireless Ear Head phones (35Hrs Playtime)",
+  //     price: "$ 253.00",
+  //     imgs: "product2.png"
+  //   },
+  //   {
+  //     heading: "Apple iPhone 13 Pro Max (128GB)",
+  //     price: "$ 320.00",
+  //     imgs: "product4.png"
+  //   },
+  //   {
+  //     heading: "Hp 15S AMD Ryzen 3- 5300U 15.6 Inches ",
+  //     price: "$ 400.00",
+  //     imgs: "product5.png"
+  //   }, {
+  //     heading: "Boult Audio Bass D3 Buds Lightweight Stereo ",
+  //     price: "$ 300.00",
+  //     imgs: "product5.png"
+  //   },
+  //   {
+  //     heading: "Bluetooth Wireless Ear Head phones (35Hrs Playtime)",
+  //     price: "$ 253.00",
+  //     imgs: "product6.png"
+  //   },
+  //   {
+  //     heading: "Apple iPhone 13 Pro Max (128GB)",
+  //     price: "$ 320.00",
+  //     imgs: "product7.png"
+  //   },
+  //   {
+  //     heading: "Hp 15S AMD Ryzen 3- 5300U 15.6 Inches ",
+  //     price: "$ 400.00",
+  //     imgs: "product8.png"
+  //   }
+  // ]
   // card two 
   const cartdata = [
     {
@@ -269,12 +271,30 @@ const Featured_products = (props) => {
 
   const getProducts = async () => {
     let productsdata = await api.getdata().then((res) => { return res.data }).catch((err) => console.error(err, "erorr"))
-    console.log(productsdata, "============================products")
+    setallproducts(productsdata)
+    let FeaturedData = productsdata?.data?.filter((item) => {
+      return item.Featured === true
+    })
+    setfilter(FeaturedData)
   }
+
+
+  // let filterdata = () => {
+  //   let FeaturedData = allproducts?.data?.filter((item) => {
+  //     console.log(item)
+  //     return item.Featured === true
+  //   })
+  //   setfilter(FeaturedData)
+  // }
+
+
+
 
   useEffect(() => {
     getProducts()
-  })
+    // filterdata()
+  }, [])
+
   return (
     <>
       <div className="featured container">
@@ -337,11 +357,13 @@ const Featured_products = (props) => {
             }
             {
               props.card3 === 1 &&
-              featuredcarddata.map((item, index) => {
+              filter?.map((item, index) => {
                 return (
                   <Fragment key={Date.now() + index} >
                     <SwiperSlide className='products-slider featured_seiperslide'>
-                      < Card3 data={item} />
+                      <Link to={`cart/${item.id}`} >
+                        < Card3 data={item} />
+                      </Link>
                     </SwiperSlide>
                   </Fragment>
                 )

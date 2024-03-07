@@ -169,7 +169,7 @@ const Filter = (props) => {
                 </div>
                 <div className="filter-data">
                     {
-                        sidebarData.map((item,index) => {
+                        sidebarData.map((item, index) => {
                             return (
                                 <Fragment key={Date.now() + index}>
                                     <div className='all-same-products' >
@@ -220,10 +220,10 @@ const Filter = (props) => {
                                                     <div className="selete-color all-option ">
                                                         <div className="color-line-1">
                                                             {
-                                                                color?.data.map((item,index) => {
+                                                                color?.data.map((item, index) => {
                                                                     return (
                                                                         <Fragment key={Date.now() + index}>
-                                                                            <li className='color-dot' onClick={() => { props.getFilterRecord("color", item.color) }} style={{ background: `${item.color_code}` }} ></li>
+                                                                            <li className='color-dot' onClick={() => { props.getFilterRecord("color", item.color) }} style={{ background: `${item.color}` }} ></li>
                                                                         </Fragment>
                                                                     )
                                                                 })

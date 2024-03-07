@@ -5,6 +5,7 @@ const API = axios.create({
 })
 
 
+
 //============================================================================//
 // regster contoller
 //============================================================================//
@@ -59,16 +60,62 @@ export const singleproductdata = async (id) => new Promise((resolve, reject) => 
     API.get(`/api/product/${id}`).then(res => resolve(res)).catch(err => reject(err))
 })
 
-
+// ===========================================================================//
+// subcategorydata
+// ===========================================================================//
 export const subcategorydata = async (link) => new Promise((resolve, reject) => {
     API.get(`/api/subcategory/${link}`).then((res) => resolve(res)).catch((err) => reject(err))
 })
-/*
-http://localhost:8000/api/subcategory/2                 subcategory se get data
-http://localhost:8000/api/brandsget/1                   brands se get data 
-http://localhost:8000/api/product/2                     single products data 
-http://localhost:8000/api/product                       all products get  
-http://localhost:8000/api/category                      all products get  
-http://localhost:8000/api/getcategory                   get category name 
 
-*/
+// ===========================================================================//
+// cartpostdata
+// ===========================================================================//
+// export const cartpostdata = async (data, token) => new Promise((resolve, reject) => {
+//     API.post(`/api/createcart`, {
+//         'headers': {
+//             'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibWFuaXNoIiwiZW1haWwiOiJtYW5pc2hAZ21haWwuY29tIiwicGFzc3dvcmQiOiIwMDAxMTAwMCIsInBob25lbnVtYmVyIjoiIiwiaWF0IjoxNzA5MDA5NjAzLCJleHAiOjE3NDA1NDU2MDN9.rWePihkx2Ry-l-pjX89oBsCJS42GB-3J0cNMZOT8R2A',
+//             'Content-Type': 'application/json'
+//         },
+//     }, data).then((res) => resolve(res)).catch((err) => reject(err))
+// })
+export const cartpostdata = async (data, token) => new Promise((resolve, reject) => {
+    console.log(token, "=================================api token page ")
+    API.post(`/api/createcart`, data, {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        },
+    }).then((res) => resolve(res)).catch((err) => reject(err))
+})
+// ===========================================================================//
+// cart get item 
+// ===========================================================================//
+export const cartugertitem = async () => new Promise((resolve, reject) => {
+    API.get("/api/userdetails/1").then((res) => resolve(res)).catch((err) => reject(err))
+})
+
+// ===========================================================================//
+// mulitipals cart item 
+// ===========================================================================//
+
+export const mulitipalscartitem = async () => new Promise((resolve, reject) => {
+    API.get("/api/findManydata").then((res) => resolve(res)).catch((err) => reject(err))
+})
+
+
+// ===========================================================================//
+// cart quantity update route ================================================//
+// ===========================================================================//
+
+export const cartquantityupdate = async (id, data) => new Promise((resolve, reject) => {
+    API.put(`/api/updatequantity/${id}`, data).then((res) => resolve(res)).catch((err) => reject(err))
+})
+
+// ===========================================================================//
+// delete cart item ================================================//
+// ===========================================================================//
+
+export const deletecartitem = async (id) => new Promise((resolve, reject) => {
+    API.delete(`/api/deletecart/${id}`).then((res) => resolve(res)).catch((err) => reject(err))
+})
+

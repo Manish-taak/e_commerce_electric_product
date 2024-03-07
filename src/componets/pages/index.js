@@ -31,12 +31,6 @@ const Index = () => {
   //     }
   // ]
 
-
-
-
-
-
-
   return (
     <>
       <main>

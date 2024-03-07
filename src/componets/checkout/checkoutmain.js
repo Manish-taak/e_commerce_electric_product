@@ -14,12 +14,10 @@ import Cashondelivery from './cashondelivery.js'
 
 const Checkoutmain = ({ note }) => {
   const [section, setSection] = useState(1)
-  console.log(section);
   const [show, setshow] = useState(1)
   const active = (e) => {
     setshow(e)
   }
-  console.log('show', show)
   let test = show === 1 ? <DebitCredit /> : show === 2 ? <UpiPayment upi={true} /> : show === 3 ? <UpiPayment emi={true} /> : show === 4 ? <Emi /> : show === 5 && <Cashondelivery />
   const { check } = useParams();
   useEffect(() => {

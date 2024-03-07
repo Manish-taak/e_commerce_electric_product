@@ -25,39 +25,44 @@ import Mainuseraccount from './componets/loginRegister/mainuseraccount.js';
 import Checkoutmain from './componets/checkout/checkoutmain.js';
 import Contaxtpop from './contaxtpop.js';
 import Error from './componets/error/error.js';
+import Usercontext from './componets/popupscontaxt/usercontext.js';
 function App() {
   const location = useLocation();
   const [click, setClick] = useState(false);
+  const [tokenuser, settokenuser] = useState(null)
+
   return (
     <>
       <Contaxtpop.Provider value={{ setClick, click }}>
-        {
-          !location.pathname.includes('mainuseraccount') && <Header />
-        }
-        {/* <Header /> */}
-        <Routes>
-          <Route element={<Index />} path='/' ></Route>
-          <Route element={<Products />} path='/products' ></Route>
-          <Route element={<TopDeals />} path='/topDeals' ></Route>
-          <Route element={<Helpcenter />} path='/helpcenter' ></Route>
-          <Route element={<Getintuch />} path='/getintuch' ></Route>
-          <Route element={<Cart />} path='/cart/:id' ></Route>
-          <Route element={<Addtocart />} path='/addtocart' ></Route>
-          {/* <Route element={<Checktout />} path='/checkout' ></Route> */}
-          <Route element={<Checkoutmain />} path='/Checkoutmain/:check' ></Route>
-          <Route element={<Orderdetail />} path='/orderdetail' ></Route>
-          <Route element={<Wish />} path='/wish' ></Route>
-          <Route element={<Myaccount />} path='/myaccount' ></Route>
-          <Route element={<Profile />} path='/profile' ></Route>
-          <Route element={<Order />} path='/order' ></Route>
-          <Route element={<Payment />} path='/payment' ></Route>
-          <Route element={<Returnorder />} path='/returnorder' ></Route>
-          <Route element={<Customercare />} path='/customercare' ></Route>
-          <Route element={<Mainuseraccount />} path='/mainuseraccount/:type' ></Route>
-          <Route element={<Error />} path='*' ></Route>
-        </Routes>
-        {!location.pathname.includes('mainuseraccount') && <Footer />}
-        <div className={`${click && "popup-overlay"}`}></div>
+        <Usercontext.Provider value={{ settokenuser, tokenuser }}>
+          {
+            !location.pathname.includes('mainuseraccount') && <Header />
+          }
+          {/* <Header /> */}
+          <Routes>
+            <Route element={<Index />} path='/' ></Route>
+            <Route element={<Products />} path='/products' ></Route>
+            <Route element={<TopDeals />} path='/topDeals' ></Route>
+            <Route element={<Helpcenter />} path='/helpcenter' ></Route>
+            <Route element={<Getintuch />} path='/getintuch' ></Route>
+            <Route element={<Cart />} path='/cart/:id' ></Route>
+            <Route element={<Addtocart />} path='/addtocart' ></Route>
+            {/* <Route element={<Checktout />} path='/checkout' ></Route> */}
+            <Route element={<Checkoutmain />} path='/Checkoutmain/:check' ></Route>
+            <Route element={<Orderdetail />} path='/orderdetail' ></Route>
+            <Route element={<Wish />} path='/wish' ></Route>
+            <Route element={<Myaccount />} path='/myaccount' ></Route>
+            <Route element={<Profile />} path='/profile' ></Route>
+            <Route element={<Order />} path='/order' ></Route>
+            <Route element={<Payment />} path='/payment' ></Route>
+            <Route element={<Returnorder />} path='/returnorder' ></Route>
+            <Route element={<Customercare />} path='/customercare' ></Route>
+            <Route element={<Mainuseraccount />} path='/mainuseraccount/:type' ></Route>
+            <Route element={<Error />} path='*' ></Route>
+          </Routes>
+          {!location.pathname.includes('mainuseraccount') && <Footer />}
+          <div className={`${click && "popup-overlay"}`}></div>
+        </Usercontext.Provider>
       </Contaxtpop.Provider>
     </>
   );

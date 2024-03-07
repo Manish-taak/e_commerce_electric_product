@@ -17,7 +17,6 @@ import * as api from "../axios/apis"
 
 const Section_1_products = (props) => {
 
-
     const [filter, setfilter] = useState(false)
     const [short, setshort] = useState(false)
     //  filter state 
@@ -27,7 +26,6 @@ const Section_1_products = (props) => {
     const [price, setprice] = useState("")
     const [brand, setbrand] = useState("")
     const [filterdata, setfilterdata] = useState([])
-
 
     const getProducts = async () => {
         let productsdata = await api.getdata().then((res) => { return res.data }).catch((err) => console.error(err, "erorr"))
@@ -46,7 +44,6 @@ const Section_1_products = (props) => {
         }
         if (key === "category") {
             if (category1 !== value) {
-                console.log(value, "valuee")
                 let testdata = data?.filter((item) => {
                     return item.category.name === value
                 })
@@ -85,6 +82,7 @@ const Section_1_products = (props) => {
             }
         }
 
+        
         if (key === "color") {
             if (color !== value) {
                 let testdata = data?.filter((item) => {
@@ -106,9 +104,7 @@ const Section_1_products = (props) => {
         }
     }
 
-    console.log(filterdata,'------------product list');
-
-
+    
     useEffect(() => {
         getProducts()
     }, [])
@@ -181,8 +177,6 @@ const Section_1_products = (props) => {
                     </div>
                 </div>
             </section>
-            div
-            
             <Featured_products card2={2} />
         </>
     )

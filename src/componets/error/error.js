@@ -22,7 +22,7 @@ const Error = () => {
 
     // if (loading) {
     //     return <p>lodding.....</p>
-    // }
+    // }    
     // if (error) {
     //     return <p>error.message......</p>
     // }
